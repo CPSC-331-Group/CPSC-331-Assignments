@@ -15,13 +15,12 @@ public class SHufflepuff {
       }
     }
     public static void main(String[] args) {
-      if (args.length > 0 && args[0] == "\\d+") {   //doesnt work yet
+      if (args.length > 0 && args[0].matches("\\d+")) {
         System.out.println(sHuffle(Integer.parseInt(args[0])));
       } else if (Integer.parseInt(args[0]) < 0) {
         System.out.println("Silly muggle! The input integer cannot be negative.");
-      } else {
+      } else {        //doesnt work yet
         System.out.println("Silly muggle! One integer input is required.");
       }
     }
 }
-//test
