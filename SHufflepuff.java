@@ -1,7 +1,7 @@
 import cpsc331.A1;
 
 public class SHufflepuff {
-    protected static int sHuffle(int n) {
+    protected static int sHuffle(int n){
       if (n == 0) {
         return 10;
       } else if (n == 1) {
@@ -15,12 +15,22 @@ public class SHufflepuff {
       }
     }
     public static void main(String[] args) {
+	  try{
+		 Integer.parseInt(args[0]);
       if (args.length > 0 && args[0].matches("\\d+")) {
         System.out.println(sHuffle(Integer.parseInt(args[0])));
       } else if (Integer.parseInt(args[0]) < 0) {
         System.out.println("Silly muggle! The input integer cannot be negative.");
-      } else {        //doesnt work yet
-        System.out.println("Silly muggle! One integer input is required.");
+		//throw new IllegalArgumentException();
+      } else {
+        System.out.println("something else went wrong");
       }
+	  }
+	  catch(IllegalArgumentException ie){
+		throw new IllegalArgumentException("Silly muggle! One integer input is required.");
+		}
+		catch(Exception ie){
+		System.out.println("something else went wrong");
+	  }
     }
 }
