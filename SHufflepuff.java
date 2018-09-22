@@ -20,7 +20,8 @@ public class SHufflepuff {
     }
     public static void main(String[] args) {
 		Boolean IllegalArgument=false; 
-	  if (args[0] instanceof Integer)
+		
+	  if (args[0].matches("-?\\d+(\\.\\d+)?"))
 		{      
 		IllegalArgument=false;
 		 }        
