@@ -1,4 +1,4 @@
-//import cpsc331.A1;
+package cpsc331.A1;
 
 public class SHufflepuff {
     protected static int sHuffle(int n){
@@ -19,13 +19,13 @@ public class SHufflepuff {
       // 2. The nth Hufflepuff number, Hn, has been returned as output.
     }
     public static void main(String[] args) {
-		Boolean IllegalArgument=false; 
-		
+		Boolean IllegalArgument=false;
+
 	  if (args[0].matches("-?\\d+(\\.\\d+)?"))
-		{      
+		{
 		IllegalArgument=false;
-		 }        
-		else{        
+		 }
+		else{
 		IllegalArgument=true;
 			throw new IllegalArgumentException("Silly muggle! One integer input is required.");
 		}
