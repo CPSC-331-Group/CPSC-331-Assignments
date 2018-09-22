@@ -1,4 +1,4 @@
-import cpsc331.A1;
+//import cpsc331.A1;
 
 public class SHufflepuff {
     protected static int sHuffle(int n){
@@ -19,22 +19,22 @@ public class SHufflepuff {
       // 2. The nth Hufflepuff number, Hn, has been returned as output.
     }
     public static void main(String[] args) {
+		Boolean IllegalArgument=false; 
 	  try{       //Try the following code
 		  Integer.parseInt(args[0]);
+		 }        //If an IllegalArgumentException was caught
+		catch(Exception ie){        //Print error that integer input is required
+		IllegalArgument=true;
+			throw new IllegalArgumentException("Silly muggle! One integer input is required.");
+		}
+		if(!IllegalArgument){
       if (args.length > 0 && args[0].matches("\\d+")) {       //If the number of arguments is greater than 0 and the first argument are digits
         System.out.println(sHuffle(Integer.parseInt(args[0])));       //Print the integer returned from calling sHuffle method with first argument
       } else if (Integer.parseInt(args[0]) < 0) {       //If the first argument is a negative integer, print error
-        System.out.println("Silly muggle! The input integer cannot be negative.");
-		//throw new IllegalArgumentException();
+		throw new IllegalArgumentException("Silly muggle! The input integer cannot be negative.");
       } else {
         System.out.println("Something else went wrong. ");        //If a different error occurs, print statement
       }
-	  }        //If an IllegalArgumentException was caught
-	  catch(IllegalArgumentException ie){        //Print error that integer input is required
-		throw new IllegalArgumentException("Silly muggle! One integer input is required.");
 		}
-		catch(Exception ie){        //If any other exception was caught
-		System.out.println("Something else went wrong. ");        //Print statement that different exception was caught
-	  }
     }
 }
