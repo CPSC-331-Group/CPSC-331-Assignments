@@ -3,6 +3,7 @@ package cpsc331.A1;
 public class Hufflepuff {
   public static int eval(int n) {
     // Assertion: A non-negative integer n has been given as input.
+	  if(n>-1) {
     if (n == 0) {
       return 10;
     } else if (n == 1) {
@@ -27,19 +28,23 @@ public class Hufflepuff {
       }
       return kadabra;
     }
+	  }
+	  else {
+		  throw new IllegalArgumentException("Silly muggle! The input integer cannot be negative.");
+	  }
     // Assertion:
     // 1. A non-negative integer n has been given as input.
     // 2. The nth Hufflepuff number, Hn, has been returned as output.
   }
 
   public static void main(String[] args) {
-		Boolean IllegalArgument=false;
-
+		Boolean IllegalArgument=false; 
+		
 	  if (args[0].matches("-?\\d+(\\.\\d+)?"))
-		{
+		{      
 		IllegalArgument=false;
-		 }
-		else{
+		 }        
+		else{        
 		IllegalArgument=true;
 			throw new IllegalArgumentException("Silly muggle! One integer input is required.");
 		}
