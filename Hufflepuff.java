@@ -34,10 +34,11 @@ public class Hufflepuff {
 
   public static void main(String[] args) {
 		Boolean IllegalArgument=false; 
-	  try{       //Try the following code
-		  Integer.parseInt(args[0]);
-		 }        //If an IllegalArgumentException was caught
-		catch(Exception ie){        //Print error that integer input is required
+	  if (args[0] instanceof Integer)
+		{      
+		IllegalArgument=false;
+		 }        
+		else{        
 		IllegalArgument=true;
 			throw new IllegalArgumentException("Silly muggle! One integer input is required.");
 		}
