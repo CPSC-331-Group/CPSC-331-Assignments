@@ -21,20 +21,20 @@ public class SHufflepuff {
     public static void main(String[] args) {
 	  try{       //Try the following code
 		  Integer.parseInt(args[0]);
-      if (args.length > 0 && args[0].matches("\\d+")) {
-        System.out.println(sHuffle(Integer.parseInt(args[0])));
-      } else if (Integer.parseInt(args[0]) < 0) {
+      if (args.length > 0 && args[0].matches("\\d+")) {       //If the number of arguments is greater than 0 and the first argument are digits
+        System.out.println(sHuffle(Integer.parseInt(args[0])));       //Print the integer returned from calling sHuffle method with first argument
+      } else if (Integer.parseInt(args[0]) < 0) {       //If the first argument is a negative integer, print error
         System.out.println("Silly muggle! The input integer cannot be negative.");
 		//throw new IllegalArgumentException();
       } else {
-        System.out.println("something else went wrong");
+        System.out.println("Something else went wrong. ");        //If a different error occurs, print statement
       }
-	  }
-	  catch(IllegalArgumentException ie){
+	  }        //If an IllegalArgumentException was caught
+	  catch(IllegalArgumentException ie){        //Print error that integer input is required
 		throw new IllegalArgumentException("Silly muggle! One integer input is required.");
 		}
-		catch(Exception ie){
-		System.out.println("something else went wrong");
+		catch(Exception ie){        //If any other exception was caught
+		System.out.println("Something else went wrong. ");        //Print statement that different exception was caught
 	  }
     }
 }
