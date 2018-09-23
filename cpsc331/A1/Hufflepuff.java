@@ -1,4 +1,4 @@
-//package cpsc331.A1;
+package cpsc331.A1;
 
 public class Hufflepuff {
   public static int eval(int n) {
@@ -38,23 +38,23 @@ public class Hufflepuff {
   }
 
   public static void main(String[] args) {
-		Boolean IllegalArgument=false;
-
-	  if (args[0].matches("-?\\d+(\\.\\d+)?"))
-		{
+		Boolean IllegalArgument=false; 
+		
+	  if (args[0].matches("-?\\d+(\\.\\d+)?")&&args.length != 0)
+		{      
 		IllegalArgument=false;
-		 }
-		else{
+		 }        
+		else{        
 		IllegalArgument=true;
 			throw new IllegalArgumentException("Silly muggle! One integer input is required.");
 		}
 		if(!IllegalArgument){
-      if (args.length == 1 && args[0].matches("\\d+")) {       //If the number of arguments is greater than 0 and the first argument are digits
+      if (args.length > 0 && args[0].matches("\\d+")) {       //If the number of arguments is greater than 0 and the first argument are digits
         System.out.println(eval(Integer.parseInt(args[0])));       //Print the integer returned from calling sHuffle method with first argument
       } else if (Integer.parseInt(args[0]) < 0) {       //If the first argument is a negative integer, print error
 		throw new IllegalArgumentException("Silly muggle! The input integer cannot be negative.");
       } else {
-        throw new IllegalArgumentException("Silly muggle! One integer input is required.");
+        System.out.println("Something else went wrong. ");        //If a different error occurs, print statement
       }
 		}
   }
