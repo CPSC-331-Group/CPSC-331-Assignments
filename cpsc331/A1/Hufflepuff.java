@@ -39,7 +39,7 @@ public class Hufflepuff {
 
   public static void main(String[] args) {
 		Boolean IllegalArgument=false; 
-		if(&&args.length != 0){
+		if(args.length != 0){
 	  if (args[0].matches("-?\\d+(\\.\\d+)?"))
 		{
 		IllegalArgument=false;
@@ -49,6 +49,7 @@ public class Hufflepuff {
 			throw new IllegalArgumentException("Silly muggle! One integer input is required.");
 		}
 		}else{
+			IllegalArgument=true;
 			throw new IllegalArgumentException("Silly muggle! One integer input is required.");
 		}
 		if(!IllegalArgument){
