@@ -1,4 +1,4 @@
-//package cpsc331.A1;
+package cpsc331.A1;
 
 import org.junit.*;
 import static org.junit.Assert.*;
