@@ -1,5 +1,3 @@
-#!/bin/bash
-
 echo ' '
 echo 'Dynamic Tests for the Main Method of SHufflepuff'
 echo ' '
