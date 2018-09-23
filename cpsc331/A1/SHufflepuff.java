@@ -25,26 +25,26 @@ public class SHufflepuff {
       // 2. The nth Hufflepuff number, Hn, has been returned as output.
     }
     public static void main(String[] args) {
-		Boolean IllegalArgument=false;
-		if(args.length != 0){
-	  if (args[0].matches("-?\\d+(\\.\\d+)?"))
+		Boolean IllegalArgument=false;        //Initiate a boolean to check for illegal argument
+		if(args.length != 0){       //If the argument length is not 0
+	  if (args[0].matches("-?\\d+(\\.\\d+)?"))       //If the first argument are numbers
 		{
-		IllegalArgument=false;
+		IllegalArgument=false;        //Illegal argument boolean remains false
 		 }
-		else{
+		else{       //Else set boolean to true and throw exception
 		IllegalArgument=true;
 			throw new IllegalArgumentException("Silly muggle! One integer input is required.");
 		}
-		}else{
+  }else{        //If the number of arguments was 0, set boolean to true and throw exception
 			IllegalArgument=true;
 			throw new IllegalArgumentException("Silly muggle! One integer input is required.");
 		}
-		if(!IllegalArgument){
-      if (args.length == 1 && args[0].matches("\\d+")) {       //If the number of arguments is greater than 0 and the first argument are digits
+		if(!IllegalArgument){       //Check the boolean and if the boolean was false then proceed
+      if (args.length == 1 && args[0].matches("\\d+")) {       //If the number of arguments is 1 and the first argument are digits
         System.out.println(sHuffle(Integer.parseInt(args[0])));       //Print the integer returned from calling sHuffle method with first argument
       } else if (Integer.parseInt(args[0]) < 0) {       //If the first argument is a negative integer, print error
 		throw new IllegalArgumentException("Silly muggle! The input integer cannot be negative.");
-      } else {
+  } else {        //Else throw an illegal argument exception
         throw new IllegalArgumentException("Silly muggle! One integer input is required.");
       }
 		}
