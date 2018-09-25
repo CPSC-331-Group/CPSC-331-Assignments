@@ -7,7 +7,7 @@ package cpsc331.A1;
 public class Hufflepuff {
 public static int eval(int n) {
         // Assertion: A non-negative integer n has been given as input.
-        if(n>-1) {
+        if(n>=0) {
                 if (n == 0) {
                         return 10;
                 } else if (n == 1) {
@@ -40,7 +40,8 @@ public static int eval(int n) {
         // 1. A non-negative integer n has been given as input.
         // 2. The nth Hufflepuff number, Hn, has been returned as output.
 }
-
+// The main method takes an integer input n as an argument in the command line.
+// The method checks if an argument is present in the command line,
 public static void main(String[] args) {
         Boolean IllegalArgument=false;    //Initiate a boolean to check for illegal argument
         if(args.length != 0) {    //If the argument length is not 0

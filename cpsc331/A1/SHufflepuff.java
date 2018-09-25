@@ -8,7 +8,7 @@ public class SHufflepuff {
 protected static int sHuffle(int n){
 
         // Assertion: A non-negative integer n has been given as input.
-        if(n>-1) {
+        if(n>= 0) {
                 if (n == 0) {
                         return 10;
                 } else if (n == 1) {
