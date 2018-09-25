@@ -5,6 +5,8 @@
 package cpsc331.A1;
 
 public class Hufflepuff {
+// Precondition: An integer n is given as input.
+// Postcondition: If n >= 0 then the nth Hufflepuff number, Hn, is returned as output. An IllegalArgumentException is thrown otherwise.
 public static int eval(int n) {
         // Assertion: A non-negative integer n has been given as input.
         if(n>=0) {
@@ -22,6 +24,15 @@ public static int eval(int n) {
                         int abra = 8;
                         int kadabra = 7;
                         int i = 3;
+                        // Loop Invariant:
+                        // 1. n is an integer such that n >= 4.
+                        // 2. i is an integer such that 3 <= i <= n.
+                        // 3. Hocus is an integer variable with the value of the (i-3)th Hufflepuff number.
+                        // 4. Pocus is an integer variable with the value of the (i-2)th Hufflepuff number.
+                        // 5. Abra is an integer variable with the value of the (i-1)th Hufflepuff number.
+                        // 6. Kadabra is an integer variable with the value of the (i)th Hufflepuff number.
+                        // Bound Function: n-i
+
                         while (i < n) {
                                 int shazam = 4*kadabra - 6*abra + 4*pocus - hocus;
                                 hocus = pocus;
@@ -32,6 +43,9 @@ public static int eval(int n) {
                         }
                         return kadabra;
                 }
+                // Assertion:
+                // 1. A non-negative integer n has been given as input.
+                // 2. The nth Hufflepuff number, Hn, has been returned as output.
         }
         else {
                 throw new IllegalArgumentException("Silly muggle! The input integer cannot be negative.");
@@ -41,7 +55,9 @@ public static int eval(int n) {
         // 2. The nth Hufflepuff number, Hn, has been returned as output.
 }
 // The main method takes an integer input n as an argument in the command line.
-// The method checks if an argument is present in the command line,
+// The method checks if a valid argument is present in the command line, it will throw
+// an IllegalArgumentException if not. If a valid argument was given, proceed to call
+// eval function and return the corresponding Hufflepuff number to user.
 public static void main(String[] args) {
         Boolean IllegalArgument=false;    //Initiate a boolean to check for illegal argument
         if(args.length != 0) {    //If the argument length is not 0
@@ -68,3 +84,5 @@ public static void main(String[] args) {
         }
 }
 }
+// References:
+// eval function: CPSC 331 - Assignment #1 Proving the Correctness of Simple Algorithms - and Implementing Them as Java Programs
