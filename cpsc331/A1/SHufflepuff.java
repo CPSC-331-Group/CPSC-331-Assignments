@@ -19,7 +19,7 @@ protected static int sHuffle(int n){
                 } else if (n == 3) {
                         return 7;
                 } else {
-                  //Bound Function: n-i
+                        //Bound Function: n-i
                         return 4*sHuffle(n - 1) - 6*sHuffle(n - 2) + 4*sHuffle(n - 3) - sHuffle(n - 4);
                 }
                 // Assertion:
@@ -36,15 +36,13 @@ protected static int sHuffle(int n){
 // The main method takes an integer input n as an argument in the command line.
 // The method checks if a valid argument is present in the command line, it will throw
 // an IllegalArgumentException if not. If a valid argument was given, proceed to call
-// eval function and return the corresponding Hufflepuff number to user.
+// sHuffle function and return the corresponding Hufflepuff number to user.
+// Running time for main is 6 if the precondition is met.
 public static void main(String[] args) {
         Boolean IllegalArgument=false;    //Initiate a boolean to check for illegal argument
         if(args.length != 0) {  //If the argument length is not 0
-                if (args[0].matches("-?\\d+(\\.\\d+)?")) //If the first argument are numbers
-                {
-                        IllegalArgument=false; //Illegal argument boolean remains false
-                }
-                else{ //Else set boolean to true and throw exception
+                if (!args[0].matches("-?\\d+(\\.\\d+)?")) //If the first argument are numbers
+                {       //Set boolean to true and throw exception
                         IllegalArgument=true;
                         throw new IllegalArgumentException("Silly muggle! One integer input is required.");
                 }
