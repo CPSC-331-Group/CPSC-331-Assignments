@@ -4,7 +4,6 @@
 
 package cpsc331.A1;
 
-// Running time for Hufflepuff is at least 3 if precondition is met, and at most 7n-9.
 public class Hufflepuff {
 // Precondition: An integer n is given as input.
 // Postcondition: If n >= 0 then the nth Hufflepuff number, Hn, is returned as output. An IllegalArgumentException is thrown otherwise.
@@ -59,7 +58,6 @@ public static int eval(int n) {
 // The method checks if a valid argument is present in the command line, it will throw
 // an IllegalArgumentException if not. If a valid argument was given, proceed to call
 // eval function and return the corresponding Hufflepuff number to user.
-// Running time for main is 6 if the precondition is met.
 public static void main(String[] args) {
         Boolean IllegalArgument=false;    //Initiate a boolean to check for illegal argument
         if(args.length != 0) {    //If the argument length is not 0
