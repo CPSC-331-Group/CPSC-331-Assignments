@@ -53,5 +53,5 @@ If that doesn't work
     git push origin master
 
 If that does not work, use this command instead
-    git pull https://github.com/bzhang908/CPSC233BattleShip.git master
+    git pull https://github.com/CPSC-331-Group/CPSC-331-Assignments.git master
 and continue with above steps
