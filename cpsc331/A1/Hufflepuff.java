@@ -1,6 +1,8 @@
-//Umair Hassan 30047693
-//Betty Zhang 30040611
-//William Chan 30041834
+/*CPSC assignment 1
+Umair Hassan 30047693
+Betty Zhang 30040611
+William Chan 30041834
+*/
 
 package cpsc331.A1;
 
