@@ -24,13 +24,13 @@ import cpsc331.collections.Dictionary;
 
 public class AVLDictionary<K extends Comparable<K>, V>
                             implements Dictionary<K, V> {
-                            
+
   // Provides a node in this AVL tree
-  
+
   class AVLNode {
-  
+
     // Data Fields
-    
+
     private K key;      // The key stored at the this node
     private V value;    // The value stored at this node
     private int height; // The height of the subtree with this node
@@ -38,84 +38,84 @@ public class AVLDictionary<K extends Comparable<K>, V>
     private AVLNode left;   // The left child of this node
     private AVLNode right;  // The right child of this node
     private AVLNode parent; // The parent of this node
-    
+
     // Constructor; constructs an AVLNode with a given key and value
     // whose left and right node and parent are initially null
-    
+
     AVLNode(K k, V v) {
-    
+
       key = k;
       value = v;
       height = 0;
       left = null;
       right = null;
       parent = null;
-    
+
     }
-    
+
     // Returns the key stored at this node
-    
+
     K key() {
       return this.key;
     }
-    
+
     // Returns the value stored at this node
-    
+
     V value() {
       return this.value;
     }
-    
+
     // Returns the height of this node
-    
+
     int height() {
       return this.height;
     }
-    
+
     // Returns the left child of this node
-    
+
     AVLNode left() {
       return this.left;
     }
-    
+
     // Returns the right child of this node
-    
+
     AVLNode right() {
       return this.right;
     }
-    
+
     AVLNode parent() {
       return this.parent;
     }
-    
+
     // Returns the balance factor of each node.
-    
+
     int balanceFactor() {
-    
+
       int leftHeight;  // Will be the height of the left child
       int rightHeight; // Will be the height of the right child
-      
+
       if (this.left == null) {
         leftHeight = -1;
       } else {
         leftHeight = (this.left).height;
       };
-      
+
       if (this.right == null) {
         rightHeight = -1;
       } else {
         rightHeight = (this.right).height;
       };
-      
+
       return leftHeight - rightHeight;
-    
+
     }
-  
+
   }
-  
+
   // Data Fields
-  
+
   private AVLNode root;
-  
+
   /**
   *
   * Constructs an empty AVLDictionary<br><br>
@@ -125,103 +125,113 @@ public class AVLDictionary<K extends Comparable<K>, V>
   *                AVLDictionary Invariant) has been created.
   *
   */
-  
+
   public AVLDictionary() {
     root = null;
   }
-  
+
   // Returns a reference to the root of this AVLDictionary
-  
+
   AVLNode root() {
     return this.root;
   }
-  
+
   // Implements the "get" method provided by Dictionary
-  
+
   public V get (K key) throws NoSuchElementException {
-  
+
     return search(key, root);
-    
+
   }
-  
+
   // Implements the required "search" method; to be supplied by
   // students
-  
+
   private V search (K key, AVLNode x) throws NoSuchElementException {
-  
-    return null;     // This line must be replaced.
-  
+    if (x == null) {
+      throw new NoSuchElementException("No value associated with this key.");
+    } else {
+      int result = key.compareTo(x.key);
+      if (result < 0) {
+        return search(key, x.left);
+      } else if (result == 0) {
+        return x.value;
+      } else {
+        return search(key, x.right);
+      }
+    }
+
   }
-  
+
   // Implements a left rotation at an input node; to be supplied
   // by students
-  
+
   private void rotateLeft (AVLNode x) {
-  
+
   }
-  
+
   // Implements a right rotation at an input node; to be supplied
   // by students
-  
+
   private void rotateRight (AVLNode x) {
-  
+
   }
-  
+
   // Implements the "set" method supplied by Dictionary
-  
+
   public void set(K k, V v) {
-  
+
     if (root == null) {
-    
+
       root = new AVLNode(k, v);
-    
+
     } else {
-    
+
       change(k, v, root);
-    
+
     }
-  
+
   }
-  
+
   // Implements the required "change" method; to be supplied
   // by students
-  
+
   private void change (K k, V v, AVLNode x) {
-  
+
   }
-  
+
   // Implements the "remove" method supplied by Dictionary
-  
+
   public V remove (K k) throws NoSuchElementException {
-  
+
     return deleteFromSubtree(k, root);
-    
+
   }
-  
+
   // Implements the required "deleteFromSubtree" method; to be
   // supplied by students
-  
+
   private V deleteFromSubtree(K k, AVLNode x)
     throws NoSuchElementException {
-    
+
     return null;          // This line must be replaced.
-    
+
   }
-  
+
   // Implements the required "deleteNode" method; to be supplied
   // by students
-  
+
   private void deleteNode (AVLNode x) {
-  
+
   }
-  
+
   // Implements the required "successor" method; to be supplied
   // by students
-  
+
   private AVLNode successor (AVLNode x) {
-  
+
     return null;      // This line must be replaced.
-  
+
   }
-                            
+
 }
