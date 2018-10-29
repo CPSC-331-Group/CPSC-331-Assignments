@@ -312,17 +312,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
 	return null;
   }
 
-  //students
-  private void updateHeight(AVLNode x){
-	while(x.parent != null){
-		if((x.parent).height() < x.height || (x.parent).height() == x.height){
-			(x.parent).height = x.height + 1;
-			x = x.parent();
-		}else{
-			break;
-		}
-	}
-  }
   //student
 	private int correctHeight(AVLNode x) {
 
@@ -336,8 +325,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
 		  rightHeight = correctHeight(x.right());
 		};
 		x.height = Math.max(leftHeight, rightHeight) + 1;
-		System.out.println("used" + x.height());
-
 		return x.height;
 
 	}
