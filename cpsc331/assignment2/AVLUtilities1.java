@@ -198,12 +198,13 @@ public class AVLUtilities1<K extends Comparable<K>, V> {
     boolean correctHeight = true;
     if (correctHeight(x) != x.height()) {
       correctHeight = false;
-	  System.out.println("correctHeight: "+ correctHeight(x) + "your height" + x.height);
     };
     if ((!correctHeight) && verbose) {
       System.out.print("Height of node with key ");
       System.out.print(x.key().toString());
       System.out.println(" is incorrect.");
+	  System.out.println("correctHeight: "+ correctHeight(x) + "your height" + x.height);
+
     };
     
     int balanceFactor = correctBalance(x);
