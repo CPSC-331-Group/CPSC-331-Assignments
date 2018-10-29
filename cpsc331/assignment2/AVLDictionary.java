@@ -276,23 +276,24 @@ public class AVLDictionary<K extends Comparable<K>, V>
   
   private void adjustAVLBalance(AVLNode x){
 	AVLNode problemNode = checkForProblem(x);
-	if(problemNode.balanceFactor() == 2){
-		AVLNode xLeft = x.left();
-		if (xLeft.balanceFactor() == 1){
-			rotateRight(problemNode);	
-		}else if(xLeft.balanceFactor() == -1){
-			rotateLeft(xLeft);
-			rotateRight(x);
-		}
-	} else if (problemNode.balanceFactor() == -2){
-		AVLNode xRight = x.right();
-		if (xRight.balanceFactor() == 1){
-			rotateRight(xRight);
-			rotateLeft(x);
-		} else if (xRight.balanceFactor() == -1){
-			rotateLeft(x);
-		}
-		
+	if(problemNode != null){
+		if(problemNode.balanceFactor() == 2){
+			AVLNode xLeft = x.left();
+			if (xLeft.balanceFactor() == 1){
+				rotateRight(problemNode);	
+			}else if(xLeft.balanceFactor() == -1){
+				rotateLeft(xLeft);
+				rotateRight(x);
+			}
+		} else if (problemNode.balanceFactor() == -2){
+			AVLNode xRight = x.right();
+			if (xRight.balanceFactor() == 1){
+				rotateRight(xRight);
+				rotateLeft(x);
+			} else if (xRight.balanceFactor() == -1){
+				rotateLeft(x);
+			}
+		}	
 	}
 	  
   }
