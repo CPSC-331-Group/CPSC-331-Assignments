@@ -334,7 +334,31 @@ public class AVLDictionary<K extends Comparable<K>, V>
   private V deleteFromSubtree(K k, AVLNode x)
     throws NoSuchElementException {
 
-    return null;          // This line must be replaced.
+    if (x == null) {
+      throw new
+      NoSuchElementException("No value is associated with this key.");
+  
+    } else {
+
+      int result = k.compareTo(x.key);
+    
+      if (result < 0) {
+      
+        return deleteFromSubtree(k, x.left);
+      
+      } else if (result > 0) {
+      
+        return deleteFromSubtree(k, x.right);
+      
+      } else { // k is stored at x
+      
+        V v = x.value;
+        deleteNode(x);
+        return v;
+        
+      }
+      
+    }
 
   }
 
@@ -349,8 +373,22 @@ public class AVLDictionary<K extends Comparable<K>, V>
   // by students
 
   private AVLNode successor (AVLNode x) {
-
-    return null;      // This line must be replaced.
+	BSTNode y = x.right;
+    
+    // Loop Invariant:
+    // a) The BSTDictionary Invariant is satisfied.
+    // b) A non-null node x in this BSTDictionary, whose
+    //    right subtree is not empty, has been given as input.
+    // c) y is a node in the right subtree. If the left subtree
+    //    of y is nonempty then the node the right subtree of x
+    //    storing the smallest key is the node with smallest key
+    //    in the left subtree of y. Otherwise y is this node.
+    // Bound Function: Depth of subtree with root y.
+    
+    while (y.left != null) {
+      y = y.left;
+    }
+    return y;
 
   }
 
