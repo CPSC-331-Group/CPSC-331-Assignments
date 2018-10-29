@@ -335,8 +335,9 @@ public class AVLDictionary<K extends Comparable<K>, V>
 		if (x.right() != null) {
 		  rightHeight = correctHeight(x.right());
 		};
-		System.out.println("used" + x.height());
 		x.height = Math.max(leftHeight, rightHeight) + 1;
+		System.out.println("used" + x.height());
+
 		return x.height;
 
 	}
