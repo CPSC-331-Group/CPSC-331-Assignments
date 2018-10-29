@@ -319,8 +319,23 @@ public class AVLDictionary<K extends Comparable<K>, V>
 		}
 	}
   }
-  
-  
+  //student
+	private int correctHeight(AVLNode x) {
+
+		int leftHeight = -1;
+		if (x.left() != null) {
+		  leftHeight = correctHeight(x.left());
+		};
+
+		int rightHeight = -1;
+		if (x.right() != null) {
+		  rightHeight = correctHeight(x.right());
+		};
+
+		x.height = Math.max(leftHeight, rightHeight) + 1;
+		return x.height;
+
+	}
   // Implements the "remove" method supplied by Dictionary
 
   public V remove (K k) throws NoSuchElementException {
