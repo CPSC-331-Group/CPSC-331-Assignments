@@ -4,7 +4,7 @@ import java.util.NoSuchElementException;
 import cpsc331.collections.Dictionary;
 import cpsc331.assignment2.AVLDictionary;
 import java.util.ArrayList;
-import cpsc331.assignment2.AVLUtilities;
+import cpsc331.assignment2.AVLUtilities1;
 
 public class AVLTest1 {
 
