@@ -105,7 +105,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
       } else {
         rightHeight = (this.right).height;
       };
-
+	
       return leftHeight - rightHeight;
 
     }
@@ -167,6 +167,33 @@ public class AVLDictionary<K extends Comparable<K>, V>
   // by students
 
   private void rotateLeft (AVLNode x) {
+	AVLNode p = x.parent();
+	AVLNode z = x.right();
+	if(p != null) {
+		//change the children of the p to z 
+		//have to check if x is right or left child or p
+		//update children of p
+		if(p.right() == x){
+			p.right = z;
+		}else if(p.left == x){
+			p.left = z;
+		}
+		z.parent = p;
+		
+	}
+	
+	AVLNode zLChild = z.left();
+	if(zLChild == null){
+		//change x's right child to null
+		x.right = null;
+	}else{
+		//change x's right child to zLChild
+		//change zLChild's parent to x	
+		x.right = zLChild;
+		zLChild.parent = x;
+	}
+	//change z's left child to x
+	z.left = x;
 
   }
 
@@ -174,7 +201,30 @@ public class AVLDictionary<K extends Comparable<K>, V>
   // by students
 
   private void rotateRight (AVLNode x) {
-
+	AVLNode p = x.parent();
+	AVLNode z = x.left();
+	if(p != null){
+		//change the children of the p to z
+		//have to check if x is right or left child or p
+		if(p.left() == x){
+			p.left = z;
+		}else if(p.right() == x){
+			p.right = z;
+			
+		}
+		z.parent = p;
+	}
+	
+	AVLNode zRChild = z.right();
+	if(zRChild == null){
+		x.left = null;
+		
+	}else{
+		x.left = zRChild;
+		zRChild.parent = x;
+	}
+	z.right = x;
+	
   }
 
   // Implements the "set" method supplied by Dictionary
@@ -197,9 +247,79 @@ public class AVLDictionary<K extends Comparable<K>, V>
   // by students
 
   private void change (K k, V v, AVLNode x) {
-
+	int result = k.compareTo(x.key);
+	if (result < 0 ){
+		if(x.left == null){
+			AVLNode newNode = new AVLNode(k, v);
+			x.left = newNode;
+			newNode.parent = x;
+			updateHeight(x);
+			adjustAVLBalance(x);
+		}else{
+			change(k,v,x.left());
+		}
+	}else if(result == 0){
+		x.value = v;
+	}else{
+		//result > 0
+		if (x.right == null) {      
+			AVLNode newNode = new AVLNode(k, v);
+			x.right = newNode;
+			newNode.parent = x;
+			updateHeight(x);
+			adjustAVLBalance(x);
+		}else{
+			change(k, v, x.right);
+		}
+	}
+  }
+  
+  private void adjustAVLBalance(AVLNode x){
+	AVLNode problemNode = checkForProblem(x);
+	if(problemNode.balanceFactor() == 2){
+		AVLNode xLeft = x.left();
+		if (xLeft.balanceFactor() == 1){
+			rotateRight(problemNode);	
+		}else if(xLeft.balanceFactor() == -1){
+			rotateLeft(xLeft);
+			rotateRight(x);
+		}
+	} else if (problemNode.balanceFactor() == -2){
+		AVLNode xRight = x.right();
+		if (xRight.balanceFactor() == 1){
+			rotateRight(xRight);
+			rotateLeft(x);
+		} else if (xRight.balanceFactor() == -1){
+			rotateLeft(x);
+		}
+		
+	}
+	  
+  }
+  //students
+  private AVLNode checkForProblem(AVLNode x){
+	while(x.parent() != null){
+		if(x.balanceFactor() < -1 || x.balanceFactor() > 1){
+			return x;
+		}
+		x = x.parent();
+	}
+	return null;
   }
 
+  //students
+  private void updateHeight(AVLNode x){
+	while(x.parent != null){
+		if((x.parent).height() < x.height || (x.parent).height() == x.height){
+			(x.parent).height = x.height + 1;
+			x = x.parent();
+		}else{
+			break;
+		}
+	}
+  }
+  
+  
   // Implements the "remove" method supplied by Dictionary
 
   public V remove (K k) throws NoSuchElementException {
