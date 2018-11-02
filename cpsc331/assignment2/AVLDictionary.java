@@ -253,9 +253,9 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			AVLNode newNode = new AVLNode(k, v);
 			x.left = newNode;
 			newNode.parent = x;
-			correctHeight(root);
+			updateHeight(root);
 			adjustAVLBalance(x);
-			correctHeight(root);
+			updateHeight(root);
 
 		}else{
 			change(k,v,x.left());
@@ -268,15 +268,16 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			AVLNode newNode = new AVLNode(k, v);
 			x.right = newNode;
 			newNode.parent = x;
-			correctHeight(root);
+			updateHeight(root);
 			adjustAVLBalance(x);
-			correctHeight(root);
+			updateHeight(root);
 
 		}else{
 			change(k, v, x.right);
 		}
 	}
   }
+  
   
   private void adjustAVLBalance(AVLNode x){
 	AVLNode problemNode = checkForProblem(x);
@@ -312,17 +313,17 @@ public class AVLDictionary<K extends Comparable<K>, V>
 	return null;
   }
 
-  //student
-	private int correctHeight(AVLNode x) {
+  //reference: correctHeight method from the AVLUtilities.java provided for this assignment
+	private int updateHeight(AVLNode x) {
 
 		int leftHeight = -1;
 		if (x.left() != null) {
-		  leftHeight = correctHeight(x.left());
+		  leftHeight = updateHeight(x.left());
 		};
 
 		int rightHeight = -1;
 		if (x.right() != null) {
-		  rightHeight = correctHeight(x.right());
+		  rightHeight = updateHeight(x.right());
 		};
 		x.height = Math.max(leftHeight, rightHeight) + 1;
 		return x.height;
