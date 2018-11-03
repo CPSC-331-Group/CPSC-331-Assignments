@@ -312,6 +312,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
 		//int leftHeight = (x.left()).height();
 		//x.height = Math.max(rightHeight, leftHeight) +1;
 		if(x.balanceFactor() < -1 || x.balanceFactor() > 1){
+			System.out.println (x.left() + " " + x.right());
 			return x;
 		}
 		x = x.parent();
