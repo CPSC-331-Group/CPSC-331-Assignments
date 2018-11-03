@@ -276,7 +276,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			change(k, v, x.right);
 		}
 	}
-	System.out.println (x.key() + " " + x.parent() + "left: " + x.left());
   }
   
   
@@ -285,7 +284,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
 	if(problemNode != null){
 		System.out.println(problemNode.value());
 		if(problemNode.balanceFactor() == 2){
-			System.out.println(x.left() + " "  + x.right());
 			AVLNode xLeft = problemNode.left();
 			System.out.println(xLeft.height());
 			if (xLeft.balanceFactor() == 1){
@@ -313,7 +311,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
 		//int leftHeight = (x.left()).height();
 		//x.height = Math.max(rightHeight, leftHeight) +1;
 		if(x.balanceFactor() < -1 || x.balanceFactor() > 1){
-			System.out.println (x.left());
 			return x;
 		}
 		x = x.parent;
