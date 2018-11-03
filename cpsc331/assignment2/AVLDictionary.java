@@ -285,20 +285,19 @@ public class AVLDictionary<K extends Comparable<K>, V>
 		System.out.println(problemNode.value());
 		if(problemNode.balanceFactor() == 2){
 			AVLNode xLeft = problemNode.left();
-			System.out.println(xLeft.height());
 			if (xLeft.balanceFactor() == 1){
 				rotateRight(problemNode);	
 			}else if(xLeft.balanceFactor() == -1){
 				rotateLeft(xLeft);
-				rotateRight(x);
+				rotateRight(problemNode);
 			}
 		} else if (problemNode.balanceFactor() == -2){
 			AVLNode xRight = problemNode.right();
 			if (xRight.balanceFactor() == 1){
 				rotateRight(xRight);
-				rotateLeft(x);
+				rotateLeft(problemNode);
 			} else if (xRight.balanceFactor() == -1){
-				rotateLeft(x);
+				rotateLeft(problemNode);
 			}
 		}	
 	}
