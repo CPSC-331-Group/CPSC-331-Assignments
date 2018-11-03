@@ -284,6 +284,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
 	if(problemNode != null){
 		System.out.println(problemNode.value());
 		if(problemNode.balanceFactor() == 2){
+			System.out.println(x.left() + " "  + x.right());
 			AVLNode xLeft = x.left();
 			System.out.println(xLeft.height());
 			if (xLeft.balanceFactor() == 1){
