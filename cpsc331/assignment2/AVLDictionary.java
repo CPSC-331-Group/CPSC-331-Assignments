@@ -281,8 +281,8 @@ public class AVLDictionary<K extends Comparable<K>, V>
   
   private void adjustAVLBalance(AVLNode x){
 	AVLNode problemNode = checkForProblem(x);
-	System.out.println(problemNode.value());
 	if(problemNode != null){
+		System.out.println(problemNode.value());
 		if(problemNode.balanceFactor() == 2){
 			AVLNode xLeft = x.left();
 			if (xLeft.balanceFactor() == 1){
