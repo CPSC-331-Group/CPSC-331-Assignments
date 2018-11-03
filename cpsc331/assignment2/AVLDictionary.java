@@ -315,7 +315,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			System.out.println (x.left() + " " + x.right());
 			return x;
 		}
-		x = x.parent();
+		x = x.parent;
 	}
 	return null;
   }
