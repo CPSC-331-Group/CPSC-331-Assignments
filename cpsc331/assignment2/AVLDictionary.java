@@ -331,6 +331,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
 		  rightHeight = updateHeight(x.right());
 		};
 		x.height = Math.max(leftHeight, rightHeight) + 1;
+		System.out.println(x.key() + " " + x.height());
 		return x.height;
 
 	}
