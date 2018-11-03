@@ -253,7 +253,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			AVLNode newNode = new AVLNode(k, v);
 			x.left = newNode;
 			newNode.parent = x;
-			updateHeight(root);
+			updateHeight(x);
 			adjustAVLBalance(x);
 			updateHeight(root);
 
@@ -268,7 +268,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			AVLNode newNode = new AVLNode(k, v);
 			x.right = newNode;
 			newNode.parent = x;
-			updateHeight(root);
+			updateHeight(x);
 			adjustAVLBalance(x);
 			updateHeight(root);
 
@@ -305,6 +305,9 @@ public class AVLDictionary<K extends Comparable<K>, V>
   //students
   private AVLNode checkForProblem(AVLNode x){
 	while(x.parent() != null){
+		int rightHeight = (x.right()).height();
+		int leftHeight = (x.left()).height();
+		x.height = Math.max(rightHeight, leftHeight) +1;
 		if(x.balanceFactor() < -1 || x.balanceFactor() > 1){
 			return x;
 		}
@@ -375,7 +378,80 @@ public class AVLDictionary<K extends Comparable<K>, V>
   // by students
 
   private void deleteNode (AVLNode x) {
-
+	if (x.left == null) {
+   
+     if (x.right == null) {
+     
+       if (x.parent == null) { //This was the only node
+       
+         root = null;
+     
+       } else {  // x should be removed as a child
+     
+         AVLNode parent = x.parent;
+         int result = (x.key).compareTo(parent.key);
+         if (result < 0) { // x is a left child
+           parent.left = null;
+         } else {  // x is a right child
+           parent.right = null;
+         };
+     
+       };
+   
+     } else {
+     
+       AVLNode rightChild = x.right;
+     
+       if (x.parent == null) {  // Right child should become root
+       
+         rightChild.parent = null;
+         root = rightChild;
+       
+       } else {  // Right child should be promoted
+       
+         AVLNode parent = x.parent;
+         int result = (x.key).compareTo(parent.key);
+         if (result < 0) { // x is a left child
+           parent.left = rightChild;
+         } else { // x is a right child
+           parent.right = rightChild;
+         };
+         rightChild.parent = parent;
+       
+       };
+     
+     };
+     
+   } else if (x.right == null) {
+   
+     AVLNode leftChild = x.left;
+     
+     if (x.parent == null) {  // Left child should become root
+     
+       leftChild.parent = null;
+       root = leftChild;
+       
+     } else { // Left child should be promoted
+     
+       AVLNode parent = x.parent;
+       int result = (x.key).compareTo(parent.key);
+       if (result < 0) { // x is a left child
+         parent.left = leftChild;
+       } else {  // x is a right child
+         parent.right = leftChild;
+       }; 
+       leftChild.parent = parent;
+           
+     };
+   
+   } else {  // Successor of x should replace x
+   
+     AVLNode successor = successor(x);
+     x.key = successor.key;
+     x.value = successor.value;
+     deleteNode(successor);
+   
+  }
   }
 
   // Implements the required "successor" method; to be supplied
