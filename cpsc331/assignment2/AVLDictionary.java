@@ -365,7 +365,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
       int result = k.compareTo(x.key);
     
       if (result < 0) {
-      
+        System.out.println("current key " + "x.key");
         return deleteFromSubtree(k, x.left);
       
       } else if (result > 0) {
@@ -431,7 +431,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
          int result = (x.key).compareTo(parent.key);
          if (result < 0) { // x is a left child
            parent.left = null;
-		   System.out.println("parent :" + parent.key() + "height: " + parent.height());
+		   //System.out.println("parent :" + parent.key() + "height: " + parent.height());
          } else {  // x is a right child
            parent.right = null;
          };
