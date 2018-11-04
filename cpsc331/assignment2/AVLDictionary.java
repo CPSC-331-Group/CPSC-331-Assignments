@@ -434,8 +434,8 @@ public class AVLDictionary<K extends Comparable<K>, V>
          } else {  // x is a right child
            parent.right = null;
          };
-		 parent.height = 0;
-
+		 
+		 updateHeight(parent);
      
        };
    
