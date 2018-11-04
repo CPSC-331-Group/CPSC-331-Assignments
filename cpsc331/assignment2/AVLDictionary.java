@@ -197,6 +197,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
 	}
 	//change z's left child to x
 	z.left = x;
+	x.parent = x;
 
   }
 
@@ -229,6 +230,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
 		zRChild.parent = x;
 	}
 	z.right = x;
+	x.parent = z;
 	
   }
 
