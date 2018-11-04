@@ -384,10 +384,9 @@ public class AVLDictionary<K extends Comparable<K>, V>
   private void heightAdjust(AVLNode x){
 	
 	while(x.parent() != null){
-		AVLNode xLeft = x.left();
-		AVLNode xRight = x.right();
-		x.height = Math.max(xLeft.height(), xRight.height()) + 1;
+
 		if(x.balanceFactor() == 2){
+			AVLNode xLeft = x.left();
 			if(xLeft.balanceFactor() == 1){
 				rotateRight(x);
 			}else if (xLeft.balanceFactor() == -1){
@@ -396,6 +395,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			}
 			updateHeight(x);
 		}else if(x.balanceFactor() == -2){
+			AVLNode xRight = x.right();
 			if (xRight.balanceFactor() == 1){
 				rotateRight(xRight);
 				rotateLeft(x);
