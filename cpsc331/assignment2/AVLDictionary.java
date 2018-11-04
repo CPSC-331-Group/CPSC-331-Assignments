@@ -457,10 +457,10 @@ public class AVLDictionary<K extends Comparable<K>, V>
          } else { // x is a right child
            parent.right = rightChild;
          };
+		 updateHeight(parent);
          rightChild.parent = parent;
        
        };
-		updateHeight (root);
 		heightAdjust(rightChild);
      };
      
@@ -482,11 +482,11 @@ public class AVLDictionary<K extends Comparable<K>, V>
        } else {  // x is a right child
          parent.right = leftChild;
        }; 
+	   updateHeight(parent);
        leftChild.parent = parent;
            
      };
 	 
-	updateHeight (root);
 	heightAdjust(leftChild);
    
    } else {  // Successor of x should replace x
