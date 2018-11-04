@@ -393,7 +393,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
 				rotateLeft(xLeft);
 				rotateRight(x);
 			}
-			updateHeight(x);
 		}else if(x.balanceFactor() == -2){
 			AVLNode xRight = x.right();
 			if (xRight.balanceFactor() == 1){
@@ -402,8 +401,8 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			} else if (xRight.balanceFactor() == -1){
 				rotateLeft(x);
 			}
-			updateHeight(x);
 		}
+		updateHeight(x);
 		x = x.parent();
 		
 		
