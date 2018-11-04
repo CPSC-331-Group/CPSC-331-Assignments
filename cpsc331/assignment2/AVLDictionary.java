@@ -342,9 +342,8 @@ public class AVLDictionary<K extends Comparable<K>, V>
   // Implements the "remove" method supplied by Dictionary
 
   public V remove (K k) throws NoSuchElementException {
-
+	System.out.println("current root: " + root.key() + "leftChild" + root.left.key() + "right" + root.right.key());
     return deleteFromSubtree(k, root);
-	
 
   }
   
@@ -365,15 +364,15 @@ public class AVLDictionary<K extends Comparable<K>, V>
       int result = k.compareTo(x.key);
     
       if (result < 0) {
-        System.out.println("Right current key " + "x.key");
+        System.out.println("left current key " + x.key);
         return deleteFromSubtree(k, x.left);
       
       } else if (result > 0) {
-		System.out.println("Left current key " + "x.key");
+		System.out.println("right current key " + x.key);
         return deleteFromSubtree(k, x.right);
       
       } else { // k is stored at x
-      
+        System.out.println("key to delete" + x.key());
         V v = x.value;
         deleteNode(x);
         return v;
