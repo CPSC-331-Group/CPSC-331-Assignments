@@ -305,7 +305,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
   }
   //students
   private AVLNode checkForProblem(AVLNode x){
-	while(x.parent() != null){
+	while(x != null){
 		//int rightHeight = (x.right()).height();
 		//int leftHeight = (x.left()).height();
 		//x.height = Math.max(rightHeight, leftHeight) +1;
@@ -383,7 +383,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
   
   private void heightAdjust(AVLNode x){
 	
-	while(x.parent() != null){
+	while(x != null){
 
 		if(x.balanceFactor() == 2){
 			AVLNode xLeft = x.left();
