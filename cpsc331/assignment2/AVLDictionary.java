@@ -210,6 +210,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			p.left = z;
 		}else if(p.right() == x){
 			p.right = z;
+			System.out.println("z: "+ z.height());
 			
 		}
 		z.parent = p;
