@@ -371,8 +371,8 @@ public class AVLDictionary<K extends Comparable<K>, V>
       
         V v = x.value;
         deleteNode(x);
-		updateHeight(x);
-		heightAdjust(x);
+		updateHeight(x.parent());
+		heightAdjust(x.parent());
         return v;
         
       }
@@ -431,9 +431,9 @@ public class AVLDictionary<K extends Comparable<K>, V>
            parent.left = null;
          } else {  // x is a right child
            parent.right = null;
-         };
+         }
      
-       };
+       }
    
      } else {
      
