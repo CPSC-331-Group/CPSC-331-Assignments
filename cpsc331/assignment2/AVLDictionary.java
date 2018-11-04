@@ -338,7 +338,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
 		};
 		x.height = Math.max(leftHeight, rightHeight) + 1;
 		//System.out.println(x.key() + " " + x.height());
-		debugPrint(x);
+		//debugPrint(x);
 		return x.height;
 
 	}
@@ -394,7 +394,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
       
       } else { // k is stored at x
         System.out.println("key to delete " + x.key());
-		debugPrint(x);
+		//debugPrint(x);
         V v = x.value;
         deleteNode(x);
         return v;
