@@ -197,7 +197,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
 	}
 	//change z's left child to x
 	z.left = x;
-	x.parent = x;
+	x.parent = z;
 
   }
 
