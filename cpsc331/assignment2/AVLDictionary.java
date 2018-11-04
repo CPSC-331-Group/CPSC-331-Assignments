@@ -342,7 +342,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
   // Implements the "remove" method supplied by Dictionary
 
   public V remove (K k) throws NoSuchElementException {
-	debugPrint(root);
 	return deleteFromSubtree(k, root);
 
   }
@@ -354,10 +353,10 @@ public class AVLDictionary<K extends Comparable<K>, V>
 		System.out.print("parent: " + x.parent.key() + " " );
 		 }
 		 if(x.left() != null){
-			System.out.print("node: " + x.left.key() + " " );
+			System.out.print("left: " + x.left.key() + " " );
 		 }
 		 if(x.right() != null){
-			System.out.print("node: " + x.right.key() + " " );
+			System.out.print("right: " + x.right.key() + " " );
 		 }
 	 }else{
 		 System.out.println("node is null");
@@ -390,7 +389,8 @@ public class AVLDictionary<K extends Comparable<K>, V>
         return deleteFromSubtree(k, x.right);
       
       } else { // k is stored at x
-        System.out.println("key to delete" + x.key());
+        System.out.println("key to delete " + x.key());
+		debugPrint(root);
         V v = x.value;
         deleteNode(x);
         return v;
@@ -448,7 +448,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
          int result = (x.key).compareTo(parent.key);
          if (result < 0) { // x is a left child
            parent.left = null;
-		   //System.out.println("parent :" + parent.key() + "height: " + parent.height());
          } else {  // x is a right child
            parent.right = null;
          };
