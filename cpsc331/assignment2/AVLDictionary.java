@@ -371,10 +371,10 @@ public class AVLDictionary<K extends Comparable<K>, V>
       
         V v = x.value;
         deleteNode(x);
-		if(x.parent != null){
+		/*if(x.parent() != null){
 			updateHeight(x.parent());
 			heightAdjust(x.parent());	
-		}
+		}*/
         return v;
         
       }
@@ -386,7 +386,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
   private void heightAdjust(AVLNode x){
 
 	while(x != null){
-
 		if(x.balanceFactor() == 2){
 			AVLNode xLeft = x.left();
 			if(xLeft.balanceFactor() == 1){

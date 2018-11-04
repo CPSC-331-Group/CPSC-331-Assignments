@@ -195,7 +195,7 @@ public class AVLTest1 {
         System.out.println(" fifteen.");
       }
     } catch (NoSuchElementException e) {
-      System.out.println("Remove incorrectly threw an exception.");
+      System.out.println("Remove incorrectly threw an exception." + e.getMessage());
     };
     System.out.println("");
 
