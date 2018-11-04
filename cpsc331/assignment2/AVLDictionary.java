@@ -403,9 +403,9 @@ public class AVLDictionary<K extends Comparable<K>, V>
 				rotateLeft(x);
 			}
 			updateHeight(x);
-		}else{
-			x = x.parent();
 		}
+		x = x.parent();
+		
 		
 
 	}
