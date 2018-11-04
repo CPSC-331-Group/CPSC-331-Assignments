@@ -432,9 +432,9 @@ public class AVLDictionary<K extends Comparable<K>, V>
            parent.left = null;
          } else {  // x is a right child
            parent.right = null;
-         }
+         };
      
-       }
+       };
    
      } else {
      
@@ -488,8 +488,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
      x.key = successor.key;
      x.value = successor.value;
      deleteNode(successor);
-   
-  }
+   };
   }
 
   // Implements the required "successor" method; to be supplied
