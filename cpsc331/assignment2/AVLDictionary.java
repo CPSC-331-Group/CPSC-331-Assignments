@@ -180,6 +180,9 @@ public class AVLDictionary<K extends Comparable<K>, V>
 		}
 		z.parent = p;
 		
+	}else{
+		z.parent = null;
+		root = z;
 	}
 	
 	AVLNode zLChild = z.left();
@@ -214,6 +217,9 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			p.right = z;			
 		}
 		z.parent = p;
+	}else{
+		z.parent = null;
+		root = z;
 	}
 	
 	AVLNode zRChild = z.right();
