@@ -289,7 +289,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
   private void adjustAVLBalance(AVLNode x){
 	AVLNode problemNode = checkForProblem(x);
 	if(problemNode != null){
-		System.out.println(problemNode.value());
 		if(problemNode.balanceFactor() == 2){
 			AVLNode xLeft = problemNode.left();
 			if (xLeft.balanceFactor() == 1){
@@ -385,15 +384,12 @@ public class AVLDictionary<K extends Comparable<K>, V>
       int result = k.compareTo(x.key);
     
       if (result < 0) {
-        System.out.println("left current key " + x.key);
         return deleteFromSubtree(k, x.left);
       
       } else if (result > 0) {
-		System.out.println("right current key " + x.key);
         return deleteFromSubtree(k, x.right);
       
       } else { // k is stored at x
-        System.out.println("key to delete " + x.key());
 		//debugPrint(x);
         V v = x.value;
         deleteNode(x);
