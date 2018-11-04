@@ -431,6 +431,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
          int result = (x.key).compareTo(parent.key);
          if (result < 0) { // x is a left child
            parent.left = null;
+		   System.out.println("parent :" + parent.key() + "height: " + parent.height());
          } else {  // x is a right child
            parent.right = null;
          };
