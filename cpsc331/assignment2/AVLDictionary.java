@@ -365,11 +365,11 @@ public class AVLDictionary<K extends Comparable<K>, V>
       int result = k.compareTo(x.key);
     
       if (result < 0) {
-        System.out.println("current key " + "x.key");
+        System.out.println("Right current key " + "x.key");
         return deleteFromSubtree(k, x.left);
       
       } else if (result > 0) {
-      
+		System.out.println("Left current key " + "x.key");
         return deleteFromSubtree(k, x.right);
       
       } else { // k is stored at x
