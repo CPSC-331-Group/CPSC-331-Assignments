@@ -339,8 +339,11 @@ public class AVLDictionary<K extends Comparable<K>, V>
   public V remove (K k) throws NoSuchElementException {
 
     return deleteFromSubtree(k, root);
+	
 
   }
+  
+  
 
   // Implements the required "deleteFromSubtree" method; to be
   // supplied by students
@@ -374,6 +377,37 @@ public class AVLDictionary<K extends Comparable<K>, V>
       
     }
 
+  }
+  
+  private void heightAdjust(AVLNode x){
+	
+	while(x.parent() != null){
+		AVLNode xLeft = x.left();
+		AVLNode xRight = x.right();
+		x.height = Math.max(xLeft.height(), xRight.height()) + 1;
+		if(x.balanceFactor() == 2){
+			if(xLeft.balanceFactor() == 1){
+				rotateRight(x);
+			}else if (xLeft.balanceFactor() == -1){
+				rotateLeft(xLeft);
+				rotateRight(x);
+			}
+			updateHeight(x);
+		}else if(x.balanceFactor() == -2){
+			if (xRight.balanceFactor() == 1){
+				rotateRight(xRight);
+				rotateLeft(x);
+			} else if (xRight.balanceFactor() == -1){
+				rotateLeft(x);
+			}
+			updateHeight(x);
+		}else{
+			x = x.parent();
+		}
+		
+
+	}
+	  
   }
 
   // Implements the required "deleteNode" method; to be supplied
