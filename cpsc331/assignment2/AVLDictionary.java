@@ -362,6 +362,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
 	 }else{
 		 System.out.println("node is null");
 	 }
+	 System.out.println("");
 	 
   }
   
