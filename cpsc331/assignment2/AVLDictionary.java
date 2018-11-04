@@ -390,7 +390,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
       
       } else { // k is stored at x
         System.out.println("key to delete " + x.key());
-		debugPrint(root);
+		debugPrint(x);
         V v = x.value;
         deleteNode(x);
         return v;
