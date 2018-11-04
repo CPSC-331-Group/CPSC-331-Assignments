@@ -206,8 +206,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
   private void rotateRight (AVLNode x) {
 	AVLNode p = x.parent();
 	AVLNode z = x.left();
-	System.out.println("p :" + p.height()+ "z: "+ z.height());
-
 	if(p != null){
 		//change the children of the p to z
 		//have to check if x is right or left child or p
