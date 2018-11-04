@@ -371,10 +371,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
       
         V v = x.value;
         deleteNode(x);
-		/*if(x.parent() != null){
-			updateHeight(x.parent());
-			heightAdjust(x.parent());	
-		}*/
         return v;
         
       }
