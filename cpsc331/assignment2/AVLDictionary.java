@@ -260,8 +260,9 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			AVLNode newNode = new AVLNode(k, v);
 			x.left = newNode;
 			newNode.parent = x;
-			updateHeight(root);
-			adjustAVLBalance(newNode);
+			//updateHeight(root);
+			//adjustAVLBalance(newNode);
+			insertionAdjust(newNode);
 			updateHeight(root);
 
 		}else{
@@ -275,8 +276,9 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			AVLNode newNode = new AVLNode(k, v);
 			x.right = newNode;
 			newNode.parent = x;
-			updateHeight(root);
-			adjustAVLBalance(newNode);
+			//updateHeight(root);
+			//adjustAVLBalance(newNode);
+			insertionAdjust(newNode);
 			updateHeight(root);
 
 		}else{
