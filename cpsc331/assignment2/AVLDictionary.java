@@ -1,3 +1,9 @@
+/*CPSC assignment 1
+Umair Hassan 30047693
+Betty Zhang 30040611
+William Chan 30041834
+*/
+
 package cpsc331.assignment2;
 
 import java.util.NoSuchElementException;
@@ -144,8 +150,22 @@ public class AVLDictionary<K extends Comparable<K>, V>
 
   }
 
-  // Implements the required "search" method; to be supplied by
-  // students
+  /*
+	reference: the search method from the BSTDictionary.java
+	supplied in the lecture
+	return the values associated with the input key, return 
+	NoSuchElementException if no such value exist
+	precondition:
+		a) AVLDictionary invariant satisfied
+		b) a key with type K and AVLNode x are given as input
+	postcondition:
+		a) AVLDictionary invariant satisfied
+		b) AVLDictionary not changed
+		c) return the value of the node with key k if a node whose key 
+		the k is included in the subtree with root x, or else throw
+		a NoSuchElementException.
+	Bound Function: Depth of subtree with root x + 1
+  */
 
   private V search (K key, AVLNode x) throws NoSuchElementException {
     if (x == null) {
@@ -163,9 +183,14 @@ public class AVLDictionary<K extends Comparable<K>, V>
 
   }
 
-  // Implements a left rotation at an input node; to be supplied
-  // by students
-
+/*
+    The rotate left function implemented by student
+	precondition: 
+		a) a non-null node x is given as input
+		b) the right child of x is also non-null
+	postcondition:
+		a) a left rotation is performed on the tree on the node x
+  */
   private void rotateLeft (AVLNode x) {
 	AVLNode p = x.parent();
 	AVLNode z = x.right();
@@ -201,9 +226,14 @@ public class AVLDictionary<K extends Comparable<K>, V>
 
   }
 
-  // Implements a right rotation at an input node; to be supplied
-  // by students
-
+  /*
+    The rotate right function implemented by student
+	precondition: 
+		a) a non-null node x is given as input
+		b) the left child of x is also non-null
+	postcondition:
+		a) a right rotation is perfomred on the tree on the node x
+  */
   private void rotateRight (AVLNode x) {
 	AVLNode p = x.parent();
 	AVLNode z = x.left();
@@ -249,10 +279,27 @@ public class AVLDictionary<K extends Comparable<K>, V>
     }
 
   }
-
-  // Implements the required "change" method; to be supplied
-  // by students
-
+  /*reference: modified from the change method from BSTDictionary.java
+  provided in class lectures
+  Sets the value associated with the input key, k, to be the
+  input value, v - assuming that the node storing these values
+  should belong to the subtree whose root is the input node x
+  Precondition:
+	a) The AVLDictionary Invariant is satisfied.
+	b) A key k with type K, and value v with type V, and non-null
+     node x in this BSTDictionary have been given as input.
+	c) The AVLDictionary invariant would still be satisfied if a
+		node storing (k, v) was included in the subtree with root x 
+		- either replacing an existing node with key k if such a 
+		node exists, or added as a new node otherwise.
+  Postcondition:
+	a) The AVLDictionary Invariant is satisfied.
+	b) A node storing key k and value v has been included in the
+		subtree with root x - either replacing an existing node
+		with key k if one existed, or added as a new node otherwise.
+  
+  Bound Function for This Algorithm: Depth of subtree with root x
+  */
   private void change (K k, V v, AVLNode x) {
 	int result = k.compareTo(x.key);
 	if (result < 0 ){
@@ -260,6 +307,8 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			AVLNode newNode = new AVLNode(k, v);
 			x.left = newNode;
 			newNode.parent = x;
+			//use the following method to ensure loop invariants
+			//are still satisfied
 			insertionAdjust(newNode);
 			updateHeight(root);
 
@@ -274,6 +323,8 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			AVLNode newNode = new AVLNode(k, v);
 			x.right = newNode;
 			newNode.parent = x;
+			//use the following method to ensure loop invariants
+			//are still satisfied
 			insertionAdjust(newNode);
 			updateHeight(root);
 
@@ -290,13 +341,19 @@ public class AVLDictionary<K extends Comparable<K>, V>
 	a) the inserted node x is given as input
   postcondition:
 	a) AVLDictionary invariants are satisfied
-	b) the height of the nodes of the tree is satisfied
   */
   private void insertionAdjust(AVLNode x){
-	//update heights of subtree with x as root
 	updateHeight(x);
+	//loop invariant
+	// a) x is a non-null node that lies on the path of 
+	//    the deleted node form the deleteNode method 
+	// b) loop invariant is satisfied for the subtree of the node x
+	// Bound function: depth of the root of the AVLtree - depth of the x
 	while(x != null){
 		if(x.balanceFactor() == 2){
+		//case where the problem node has a balance factor of 2
+		//corresponding adjustments are described in the assignment's instruction
+		//and the written portion of the assignment
 			AVLNode xLeft = x.left();
 			if (xLeft.balanceFactor() == 1){
 				rotateRight(x);	
@@ -304,8 +361,14 @@ public class AVLDictionary<K extends Comparable<K>, V>
 				rotateLeft(xLeft);
 				rotateRight(x);
 			}
+			//once the deepest problem node is adjusted
+			//the rest of the tree should also balance, so there is 
+			//no need to iterate the rest of the nodes
 			break;
 		}else if (x.balanceFactor() == -2){
+		//case where the problem node has a balance factor of -2
+		///corresponding adjustments are described in the assignment's instruction
+		//and the written portion of the assignment
 			AVLNode xRight = x.right();
 			if (xRight.balanceFactor() == 1){
 				rotateRight(xRight);
@@ -313,6 +376,9 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			} else if (xRight.balanceFactor() == -1){
 				rotateLeft(x);
 			}
+			//once the deepest problem node is adjusted
+			//the rest of the tree should also balance, so there is 
+			//no need to iterate the rest of the nodes 
 			break;
 		}
 		x = x.parent;
@@ -565,7 +631,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
 	 deleted is given as input
   postcondition:
 	a) AVLDictionary invariants are satisfied
-	b) the height of the nodes of the tree is satisfied
+	b) the height of the nodes of the tree is adjusted
   */
   private void deletionAdjust(AVLNode x){
 	
@@ -588,7 +654,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
 				rotateRight(x);
 			}
 		}else if(x.balanceFactor() == -2){
-		//case where the problem node has a balance factor of 2
+		//case where the problem node has a balance factor of -2
 		//corresponding adjustments are described in the assignment's instruction
 		//and the written portion of the assignment
 			AVLNode xRight = x.right();
