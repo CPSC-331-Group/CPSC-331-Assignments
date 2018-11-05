@@ -322,10 +322,54 @@ public class AVLDictionary<K extends Comparable<K>, V>
 	}
 	return null;
   }
+  
+  private void insertionAdjust(AVLNode x){
+	//update heights of subtree with x as root
+	updateHeight(x);
+	while(x != null){
+		//int rightHeight = (x.right()).height();
+		//int leftHeight = (x.left()).height();
+		//x.height = Math.max(rightHeight, leftHeight) +1;
+		if(x.balanceFactor() < -1 || x.balanceFactor() > 1){
+			if(x.balanceFactor() == 2){
+				AVLNode xLeft = x.left();
+				if (xLeft.balanceFactor() == 1){
+					rotateRight(x);	
+				}else if(xLeft.balanceFactor() == -1){
+					rotateLeft(xLeft);
+					rotateRight(x);
+				}
+			}else if (x.balanceFactor() == -2){
+				AVLNode xRight = x.right();
+				if (xRight.balanceFactor() == 1){
+					rotateRight(xRight);
+					rotateLeft(x);
+				} else if (xRight.balanceFactor() == -1){
+					rotateLeft(x);
+				}
+			}
+			break;
+		}
+		x = x.parent;
+	}
+}
+  
 
-  //reference: correctHeight method from the AVLUtilities.java provided for this assignment
+  /*reference: modified from correctHeight method from the 
+  AVLUtilities.java provided for this assignment
+  correct and update the height of the nodes in the subtree where
+  x is the root of the subtree
+  precondition: a (possible null) node x from the AVL tree is given as input
+  postcondition: a) the height of all nodes in the subtree where x is the
+				root has been adjusted
+				b) the structure of the tree is unchanged
+  */
 	private int updateHeight(AVLNode x) {
-
+		if(x == null){
+			//only reached if the initially given input x is null
+			return -1;
+		}
+		
 		int leftHeight = -1;
 		if (x.left() != null) {
 		  leftHeight = updateHeight(x.left());
@@ -336,18 +380,18 @@ public class AVLDictionary<K extends Comparable<K>, V>
 		  rightHeight = updateHeight(x.right());
 		};
 		x.height = Math.max(leftHeight, rightHeight) + 1;
-		//System.out.println(x.key() + " " + x.height());
-		//debugPrint(x);
 		return x.height;
 
 	}
+	
   // Implements the "remove" method supplied by Dictionary
-
   public V remove (K k) throws NoSuchElementException {
 	return deleteFromSubtree(k, root);
 
   }
   
+  //debugging function to display properties of a given node
+  //to be deleted
   private void debugPrint(AVLNode x){
 	 if(x != null){
 		System.out.print("node: " + x.key() + " " );
@@ -369,9 +413,21 @@ public class AVLDictionary<K extends Comparable<K>, V>
   
   
 
-  // Implements the required "deleteFromSubtree" method; to be
-  // supplied by students
-
+  /*reference: the deleteFromSubtree method from the BSTDictionary file
+  provided in lecture notes 
+  set the value associate with the input k to undefined, throwing null 
+  pointer exception if the node associated with k does not exist
+  precondition:
+	a) The AVLDictionary invariant is satisfied
+	b) a key k (type K) and a node x in the in AVL tree is given as input
+	c) if x is null, then there is no node storing k in the tree, otherwise,
+		if there is a node storing k then the node is in the subtree of x
+  postcondition: 
+	a) the AVLDictionary invariant is satisfied
+	b) f(k) is set to undefined if f(k) was defined before the deletion, or 
+		else a NoSuchElementException has been thrown
+  Bond function: the death of the subtree with root x
+  */
   private V deleteFromSubtree(K k, AVLNode x)
     throws NoSuchElementException {
 
@@ -401,10 +457,29 @@ public class AVLDictionary<K extends Comparable<K>, V>
 
   }
   
-  private void heightAdjust(AVLNode x){
-
+  
+  /* method created by student to adjust the AVLTree 
+  through rotations to ensure AVL invariants are satisfied
+  precondition:
+	a) x, the promoted node, that lies in the path of the node being 
+	 deleted is given as input
+  postcondition:
+	a) AVLDictionary invariants are satisfied
+	b) the height of the nodes of the tree is satisfied
+  */
+  private void deletionAdjust(AVLNode x){
+	
+	//loop invariant
+	// a) x is a non-null node that lies on the path of 
+	//    the deleted node form the deleteNode method 
+	// b) loop invariant is satisfied for the subtree of the node x
+	// Bound function: depth of the root of the AVLtree - depth of the x
 	while(x != null){
-		if(x.balanceFactor() == 2){
+		
+		if(x.balanceFactor() == 2){ 
+		//case where the problem node has a balance factor of 2
+		//corresponding adjustments are described in the assignment's instruction
+		//and the written portion of the assignment
 			AVLNode xLeft = x.left();
 			if(xLeft.balanceFactor() == 1){
 				rotateRight(x);
@@ -413,6 +488,9 @@ public class AVLDictionary<K extends Comparable<K>, V>
 				rotateRight(x);
 			}
 		}else if(x.balanceFactor() == -2){
+		//case where the problem node has a balance factor of 2
+		//corresponding adjustments are described in the assignment's instruction
+		//and the written portion of the assignment
 			AVLNode xRight = x.right();
 			if (xRight.balanceFactor() == 1){
 				rotateRight(xRight);
@@ -421,17 +499,24 @@ public class AVLDictionary<K extends Comparable<K>, V>
 				rotateLeft(x);
 			}
 		}
-		updateHeight(x);
+		updateHeight(x); //update the nodes in the subtree where x is the root
 		x = x.parent();
-		
-		
 
 	}
   
   }
 
-  // Implements the required "deleteNode" method; to be supplied
-  // by students
+  /* Reference: modified from the deleteNode method in 
+	BSTDictionary.java provided from the lectures
+	remove a given node and updating the tree so that 
+	AVLDictionary invariant is stills satisfied
+	precondition: a) the AVLDictionary invariant is satisfied
+		b) a non-null x in the AVLDictionary is given as input
+	postcondition: 
+		a) The AVLDictionary invariant is satisfied
+		b) remove x from the binary search tree by setting 
+		f(k) to be undefined, where k is the key stored at x
+  */
 
   private void deleteNode (AVLNode x) {
 	if (x.left == null) {
@@ -450,11 +535,13 @@ public class AVLDictionary<K extends Comparable<K>, V>
            parent.left = null;
          } else {  // x is a right child
            parent.right = null;
-         };
+         }
 		 
+		 //update the height of each nodes in the subtree of x's parent
 		 updateHeight(parent);
-     
-       };
+		 // adjust the AVLTree (rotate) as needed to satisfy the invariant
+		 deletionAdjust(parent);
+       }
    
      } else {
      
@@ -464,7 +551,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
        
          rightChild.parent = null;
          root = rightChild;
-       
+		 
        } else {  // Right child should be promoted
        
          AVLNode parent = x.parent;
@@ -473,13 +560,15 @@ public class AVLDictionary<K extends Comparable<K>, V>
            parent.left = rightChild;
          } else { // x is a right child
            parent.right = rightChild;
-         };
+         }
+		 //update the height of nodes in the subtree of x's parent after deletion 
 		 updateHeight(parent);
          rightChild.parent = parent;
        
-       };
-		heightAdjust(rightChild);
-     };
+       }
+	    //adjust/rotate the AVL tree in the path of the deleted node (where right child is promoted)
+		deletionAdjust(rightChild);
+     }
      
    } else if (x.right == null) {
    
@@ -498,13 +587,14 @@ public class AVLDictionary<K extends Comparable<K>, V>
          parent.left = leftChild;
        } else {  // x is a right child
          parent.right = leftChild;
-       }; 
+       }
+	   //update height of nodes of subtree of x's parent
 	   updateHeight(parent);
        leftChild.parent = parent;
            
-     };
-	 
-	heightAdjust(leftChild);
+     }
+	 //adjust the AVL tree to satisfy the loop invariant 
+	deletionAdjust(leftChild);
    
    } else {  // Successor of x should replace x
    
@@ -512,11 +602,23 @@ public class AVLDictionary<K extends Comparable<K>, V>
      x.key = successor.key;
      x.value = successor.value;
      deleteNode(successor);
-   };
+   }
   }
 
-  // Implements the required "successor" method; to be supplied
-  // by students
+  /* reference: successor method from BSTDictionary.java 
+	provided by in the lectures
+	reports the smallest node on the right subtree of the input node
+	(given that the input node is not empty
+	precondition: 
+		a) the AVLDictionary Invariant is satisfied
+		b) a non-null node x, whose right subtree is not empty, 
+		is given as input
+	postcondition: 
+		a) the AVLDictionary invariant is satisfied
+		b) the AVLDictionary is not changed
+		c) the node storing the smallest value of the right subtree
+		of the given node is returned
+  */
 
   private AVLNode successor (AVLNode x) {
 	AVLNode y = x.right;
