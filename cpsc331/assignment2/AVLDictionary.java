@@ -284,30 +284,34 @@ public class AVLDictionary<K extends Comparable<K>, V>
   }
   
   
+   /* method created by student to adjust the AVLTree 
+  through rotations to ensure AVL invariants are satisfied after insertion
+  precondition:
+	a) the inserted node x is given as input
+  postcondition:
+	a) AVLDictionary invariants are satisfied
+	b) the height of the nodes of the tree is satisfied
+  */
   private void insertionAdjust(AVLNode x){
 	//update heights of subtree with x as root
 	updateHeight(x);
 	while(x != null){
-		//int rightHeight = (x.right()).height();
-		//int leftHeight = (x.left()).height();
-		//x.height = Math.max(rightHeight, leftHeight) +1;
-		if(x.balanceFactor() < -1 || x.balanceFactor() > 1){
-			if(x.balanceFactor() == 2){
-				AVLNode xLeft = x.left();
-				if (xLeft.balanceFactor() == 1){
-					rotateRight(x);	
-				}else if(xLeft.balanceFactor() == -1){
-					rotateLeft(xLeft);
-					rotateRight(x);
-				}
-			}else if (x.balanceFactor() == -2){
-				AVLNode xRight = x.right();
-				if (xRight.balanceFactor() == 1){
-					rotateRight(xRight);
-					rotateLeft(x);
-				} else if (xRight.balanceFactor() == -1){
-					rotateLeft(x);
-				}
+		if(x.balanceFactor() == 2){
+			AVLNode xLeft = x.left();
+			if (xLeft.balanceFactor() == 1){
+				rotateRight(x);	
+			}else if(xLeft.balanceFactor() == -1){
+				rotateLeft(xLeft);
+				rotateRight(x);
+			}
+			break;
+		}else if (x.balanceFactor() == -2){
+			AVLNode xRight = x.right();
+			if (xRight.balanceFactor() == 1){
+				rotateRight(xRight);
+				rotateLeft(x);
+			} else if (xRight.balanceFactor() == -1){
+				rotateLeft(x);
 			}
 			break;
 		}
@@ -419,54 +423,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
   }
   
   
-  /* method created by student to adjust the AVLTree 
-  through rotations to ensure AVL invariants are satisfied
-  precondition:
-	a) x, the promoted node, that lies in the path of the node being 
-	 deleted is given as input
-  postcondition:
-	a) AVLDictionary invariants are satisfied
-	b) the height of the nodes of the tree is satisfied
-  */
-  private void deletionAdjust(AVLNode x){
-	
-	//loop invariant
-	// a) x is a non-null node that lies on the path of 
-	//    the deleted node form the deleteNode method 
-	// b) loop invariant is satisfied for the subtree of the node x
-	// Bound function: depth of the root of the AVLtree - depth of the x
-	while(x != null){
-		
-		if(x.balanceFactor() == 2){ 
-		//case where the problem node has a balance factor of 2
-		//corresponding adjustments are described in the assignment's instruction
-		//and the written portion of the assignment
-			AVLNode xLeft = x.left();
-			if(xLeft.balanceFactor() == 1){
-				rotateRight(x);
-			}else if (xLeft.balanceFactor() == -1){
-				rotateLeft(xLeft);
-				rotateRight(x);
-			}
-		}else if(x.balanceFactor() == -2){
-		//case where the problem node has a balance factor of 2
-		//corresponding adjustments are described in the assignment's instruction
-		//and the written portion of the assignment
-			AVLNode xRight = x.right();
-			if (xRight.balanceFactor() == 1){
-				rotateRight(xRight);
-				rotateLeft(x);
-			} else if (xRight.balanceFactor() == -1){
-				rotateLeft(x);
-			}
-		}
-		updateHeight(x); //update the nodes in the subtree where x is the root
-		x = x.parent();
-
-	}
-  
-  }
-
+ 
   /* Reference: modified from the deleteNode method in 
 	BSTDictionary.java provided from the lectures
 	remove a given node and updating the tree so that 
@@ -600,5 +557,54 @@ public class AVLDictionary<K extends Comparable<K>, V>
     return y;
 
   }
+  
+   /* method created by student to adjust the AVLTree 
+  through rotations to ensure AVL invariants are satisfied
+  precondition:
+	a) x, the promoted node, that lies in the path of the node being 
+	 deleted is given as input
+  postcondition:
+	a) AVLDictionary invariants are satisfied
+	b) the height of the nodes of the tree is satisfied
+  */
+  private void deletionAdjust(AVLNode x){
+	
+	//loop invariant
+	// a) x is a non-null node that lies on the path of 
+	//    the deleted node form the deleteNode method 
+	// b) loop invariant is satisfied for the subtree of the node x
+	// Bound function: depth of the root of the AVLtree - depth of the x
+	while(x != null){
+		
+		if(x.balanceFactor() == 2){ 
+		//case where the problem node has a balance factor of 2
+		//corresponding adjustments are described in the assignment's instruction
+		//and the written portion of the assignment
+			AVLNode xLeft = x.left();
+			if(xLeft.balanceFactor() == 1){
+				rotateRight(x);
+			}else if (xLeft.balanceFactor() == -1){
+				rotateLeft(xLeft);
+				rotateRight(x);
+			}
+		}else if(x.balanceFactor() == -2){
+		//case where the problem node has a balance factor of 2
+		//corresponding adjustments are described in the assignment's instruction
+		//and the written portion of the assignment
+			AVLNode xRight = x.right();
+			if (xRight.balanceFactor() == 1){
+				rotateRight(xRight);
+				rotateLeft(x);
+			} else if (xRight.balanceFactor() == -1){
+				rotateLeft(x);
+			}
+		}
+		updateHeight(x); //update the nodes in the subtree where x is the root
+		x = x.parent();
+
+	}
+  
+  }
+
 
 }
