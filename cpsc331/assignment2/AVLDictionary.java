@@ -260,8 +260,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			AVLNode newNode = new AVLNode(k, v);
 			x.left = newNode;
 			newNode.parent = x;
-			//updateHeight(root);
-			//adjustAVLBalance(newNode);
 			insertionAdjust(newNode);
 			updateHeight(root);
 
@@ -276,8 +274,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			AVLNode newNode = new AVLNode(k, v);
 			x.right = newNode;
 			newNode.parent = x;
-			//updateHeight(root);
-			//adjustAVLBalance(newNode);
 			insertionAdjust(newNode);
 			updateHeight(root);
 
@@ -287,43 +283,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
 	}
   }
   
-  
-  private void adjustAVLBalance(AVLNode x){
-	AVLNode problemNode = checkForProblem(x);
-	if(problemNode != null){
-		if(problemNode.balanceFactor() == 2){
-			AVLNode xLeft = problemNode.left();
-			if (xLeft.balanceFactor() == 1){
-				rotateRight(problemNode);	
-			}else if(xLeft.balanceFactor() == -1){
-				rotateLeft(xLeft);
-				rotateRight(problemNode);
-			}
-		} else if (problemNode.balanceFactor() == -2){
-			AVLNode xRight = problemNode.right();
-			if (xRight.balanceFactor() == 1){
-				rotateRight(xRight);
-				rotateLeft(problemNode);
-			} else if (xRight.balanceFactor() == -1){
-				rotateLeft(problemNode);
-			}
-		}	
-	}
-	  
-  }
-  //students
-  private AVLNode checkForProblem(AVLNode x){
-	while(x != null){
-		//int rightHeight = (x.right()).height();
-		//int leftHeight = (x.left()).height();
-		//x.height = Math.max(rightHeight, leftHeight) +1;
-		if(x.balanceFactor() < -1 || x.balanceFactor() > 1){
-			return x;
-		}
-		x = x.parent;
-	}
-	return null;
-  }
   
   private void insertionAdjust(AVLNode x){
 	//update heights of subtree with x as root
