@@ -649,17 +649,11 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			AVLNode xLeft = x.left();
 			if(xLeft.balanceFactor() == 1){
 				rotateRight(x);
-				//
-				updateHeight(xLeft);
-				x = xLeft.parent();
 			}else if (xLeft.balanceFactor() == -1){
 				rotateLeft(xLeft);
 				rotateRight(x);
-				AVLNode newParent = xLeft.right();
-				updateHeight(newParent);
-				x = newParent.parent();
-				
 			}
+			x = x.parent();
 		}else if(x.balanceFactor() == -2){
 		//case where the problem node has a balance factor of -2
 		//corresponding adjustments are described in the assignment's instruction
@@ -668,15 +662,13 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			if (xRight.balanceFactor() == 1){
 				rotateRight(xRight);
 				rotateLeft(x);
-				AVLNode newParent = xRight.left();
-				updateHeight(newParent);
-				x = newParent.parent();
 			} else if (xRight.balanceFactor() == -1){
 				rotateLeft(x);
-				updateHeight(xRight);
-				x = xRight.parent();
 			}
+			x = x.parent();
 		}
+		updateHeight(x); //update the nodes in the subtree where x is the root
+		x = x.parent();
 
 	}
   
