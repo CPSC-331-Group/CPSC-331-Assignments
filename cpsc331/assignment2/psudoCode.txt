@@ -1,0 +1,49 @@
+deletionAdjust(AVLNode x){
+	while (x is not null){
+		if (the balance factor of x = 2){
+			y = the left child of x
+			if (the balance factor of y = 1){
+				left rotation on x
+			} else if (the balance factor of y = -1){
+				left rotation on y
+				right rotation on x
+			}
+		}else if (the balance factor of x = -2){
+			z = the right child of x
+			if (the balance factor of z = 1){
+				right rotation on z
+				left rotation on x
+			}else if (the balance factor of z = -1){
+				left rotation on x
+			}
+		}
+		update heights of nodes in the subtree of x
+		x = the parent of x
+	}
+}
+
+insertionAdjust (AVLNode x){
+	update height of nodes in subtree of x
+	while (x is not null){
+		if (the balance factor of x = 2){
+			y = the left child of x
+			if (the balance factor of y = 1){
+				left rotation on x
+			} else if (the balance factor of y = -1){
+				left rotation on y
+				right rotation on x
+			}
+			exit the loop (hence exiting the method)
+		}else if (the balance factor of x = -2){
+			z = the right child of x
+			if (the balance factor of z = 1){
+				right rotation on z
+				left rotation on x
+			}else if (the balance factor of z = -1){
+				left rotation on x
+			}
+			exit the loop (hence exiting the method)
+
+		}
+		x = the parent of x
+	}
