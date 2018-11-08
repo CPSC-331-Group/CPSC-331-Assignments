@@ -653,7 +653,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
 				rotateLeft(xLeft);
 				rotateRight(x);
 			}
-			x = x.parent();
 		}else if(x.balanceFactor() == -2){
 		//case where the problem node has a balance factor of -2
 		//corresponding adjustments are described in the assignment's instruction
@@ -665,7 +664,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			} else if (xRight.balanceFactor() == -1){
 				rotateLeft(x);
 			}
-			x = x.parent();
 		}
 		updateHeight(x); //update the nodes in the subtree where x is the root
 		x = x.parent();
