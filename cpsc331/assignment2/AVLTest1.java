@@ -75,8 +75,8 @@ public class AVLTest1 {
     System.out.println("");
     
     System.out.println("Checking whether result is an AVL tree.");
-    AVLUtilities1<Integer, String> tester = 
-           new AVLUtilities1<Integer, String>();
+    AVLUtilities<Integer, String> tester = 
+           new AVLUtilities<Integer, String>();
     boolean isAVL = tester.isAVLTree(D, true);
     if (isAVL) {
       System.out.println("This is an AVL tree.");
