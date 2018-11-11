@@ -277,7 +277,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
       change(k, v, root);
 
     }
-	debugPrint(root);
 
   }
   /*reference: modified from the change method from BSTDictionary.java
@@ -412,8 +411,9 @@ public class AVLDictionary<K extends Comparable<K>, V>
 		  rightHeight = updateHeight(x.right());
 		};
 		x.height = Math.max(leftHeight, rightHeight) + 1;
-		return x.height;
+		debugPrint(root);
 
+		return x.height;
 	}
 
   // Implements the "remove" method supplied by Dictionary
