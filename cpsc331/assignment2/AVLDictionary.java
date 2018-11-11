@@ -350,6 +350,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
 	// b) loop invariant is satisfied for the subtree of the node x
 	// Bound function: depth of the root of the AVLtree - depth of the x
 	while(x != null){
+		debugPrint(x);
 		if(x.balanceFactor() == 2){
 		//case where the problem node has a balance factor of 2
 		//corresponding adjustments are described in the assignment's instruction
@@ -397,10 +398,8 @@ public class AVLDictionary<K extends Comparable<K>, V>
   */
 	private int updateHeight(AVLNode x) {
 		if(x == null){
-			x.height = -1;
-			debugPrint(x);
-			return x.height;
-
+			//only reached if the initially given input x is null
+			return -1;
 		}
 
 		int leftHeight = -1;
@@ -413,7 +412,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
 		  rightHeight = updateHeight(x.right());
 		};
 		x.height = Math.max(leftHeight, rightHeight) + 1;
-		debugPrint(x);
+		//debugPrint(x);
 
 		return x.height;
 	}
@@ -438,8 +437,8 @@ public class AVLDictionary<K extends Comparable<K>, V>
 		 if(x.right() != null){
 			System.out.print("right: " + x.right.key() + " " );
 		 }
-		 System.out.print("height: " + x.height());
-		 System.out.print("balanceFactor" + x.balanceFactor());
+		 System.out.print("height: " + x.height() + " " );
+		 System.out.print("balanceFactor" + x.balanceFactor() + " ");
 	 }else{
 		 System.out.println("node is null");
 	 }
