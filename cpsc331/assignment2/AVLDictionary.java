@@ -397,8 +397,10 @@ public class AVLDictionary<K extends Comparable<K>, V>
   */
 	private int updateHeight(AVLNode x) {
 		if(x == null){
-			//only reached if the initially given input x is null
-			return -1;
+			x.height = -1;
+			debugPrint(x);
+			return x.height;
+
 		}
 
 		int leftHeight = -1;
@@ -436,8 +438,8 @@ public class AVLDictionary<K extends Comparable<K>, V>
 		 if(x.right() != null){
 			System.out.print("right: " + x.right.key() + " " );
 		 }
-		 System.out.println("height: " + x.height());
-		 System.out.println("balanceFactor" + x.balanceFactor());
+		 System.out.print("height: " + x.height());
+		 System.out.print("balanceFactor" + x.balanceFactor());
 	 }else{
 		 System.out.println("node is null");
 	 }
