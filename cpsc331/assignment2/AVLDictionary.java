@@ -343,13 +343,13 @@ public class AVLDictionary<K extends Comparable<K>, V>
 	a) AVLDictionary invariants are satisfied
   */
   private void insertionAdjust(AVLNode x){
-	updateHeight(x);
 	//loop invariant
 	// a) x is a non-null node that lies on the path of
 	//    the deleted node form the deleteNode method
 	// b) loop invariant is satisfied for the subtree of the node x
 	// Bound function: depth of the root of the AVLtree - depth of the x
 	while(x != null){
+		updateHeight(x);
 		debugPrint(x);
 		if(x.balanceFactor() == 2){
 		//case where the problem node has a balance factor of 2
