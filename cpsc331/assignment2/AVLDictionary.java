@@ -436,6 +436,8 @@ public class AVLDictionary<K extends Comparable<K>, V>
 		 if(x.right() != null){
 			System.out.print("right: " + x.right.key() + " " );
 		 }
+		 Ssystem.out.println("height: " + x.height();
+		 System.out.println("balanceFactor" + x.balanceFactor());
 	 }else{
 		 System.out.println("node is null");
 	 }
