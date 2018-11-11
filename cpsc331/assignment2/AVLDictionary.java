@@ -277,7 +277,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
       change(k, v, root);
 
     }
-	debugPrint(root)
+	debugPrint(root);
 
   }
   /*reference: modified from the change method from BSTDictionary.java
