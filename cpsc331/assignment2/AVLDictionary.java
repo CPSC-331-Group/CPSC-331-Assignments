@@ -676,6 +676,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			}
 		}
 		updateHeight(x); //update the nodes in the subtree where x is the root
+		debugPrint(x);
 		x = x.parent();
 
 	}
