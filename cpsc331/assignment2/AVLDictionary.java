@@ -381,7 +381,7 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			//no need to iterate the rest of the nodes
 			break;
 		}
-		debugPrint(x);
+		//debugPrint(x);
 
 		x = x.parent;
 	}
@@ -660,7 +660,11 @@ public class AVLDictionary<K extends Comparable<K>, V>
 				rotateLeft(xLeft);
 				rotateRight(x);
 			} else if(xLeft.balanceFactor() == 0){
-				rotateRight(x);
+				rotateRight(x);	
+				updateHeight(root);
+				System.out.print("2. before leaving ");
+				debugPrint(x);
+				break;
 			}
 		}else if(x.balanceFactor() == -2){
 		//case where the problem node has a balance factor of -2
@@ -674,6 +678,11 @@ public class AVLDictionary<K extends Comparable<K>, V>
 				rotateLeft(x);
 			} else if(xRight.balanceFactor() == 0){
 				rotateLeft(x);
+				updateHeight(root);
+				System.out.print("-2. before leaving ");
+				debugPrint(x);
+				break;
+
 			}
 		}
 		updateHeight(x); //update the nodes in the subtree where x is the root
