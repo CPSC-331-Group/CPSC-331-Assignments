@@ -381,7 +381,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			//no need to iterate the rest of the nodes
 			break;
 		}
-		//debugPrint(x);
 
 		x = x.parent;
 	}
@@ -413,8 +412,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
 		  rightHeight = updateHeight(x.right());
 		};
 		x.height = Math.max(leftHeight, rightHeight) + 1;
-		//debugPrint(x);
-
 		return x.height;
 	}
 
@@ -482,7 +479,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
         return deleteFromSubtree(k, x.right);
 
       } else { // k is stored at x
-		//debugPrint(x);
         V v = x.value;
         deleteNode(x);
         return v;
@@ -646,8 +642,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
 	// b) loop invariant is satisfied for the subtree of the node x
 	// Bound function: depth of the root of the AVLtree - depth of the x
 	while(x != null){
-		//System.out.println("before remove");
-		//debugPrint(x);
 
 		if(x.balanceFactor() == 2){
 		//case where the problem node has a balance factor of 2
@@ -662,8 +656,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			} else if(xLeft.balanceFactor() == 0){
 				rotateRight(x);	
 				updateHeight(root);
-				//System.out.print("2. before leaving ");
-				//debugPrint(x);
 				break;
 			}
 		}else if(x.balanceFactor() == -2){
@@ -679,15 +671,11 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			} else if(xRight.balanceFactor() == 0){
 				rotateLeft(x);
 				updateHeight(root);
-				//System.out.print("-2. before leaving ");
-				//debugPrint(x);
 				break;
 
 			}
 		}
 		updateHeight(x); //update the nodes in the subtree where x is the root
-		//System.out.println("after adjust");
-		//debugPrint(x);
 		x = x.parent();
 
 	}
