@@ -350,7 +350,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
 	// Bound function: depth of the root of the AVLtree - depth of the x
 	while(x != null){
 		updateHeight(x);
-		debugPrint(x);
 		if(x.balanceFactor() == 2){
 		//case where the problem node has a balance factor of 2
 		//corresponding adjustments are described in the assignment's instruction
@@ -382,6 +381,8 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			//no need to iterate the rest of the nodes
 			break;
 		}
+		//debugPrint(x);
+
 		x = x.parent;
 	}
 }
@@ -671,7 +672,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
 			} else if (xRight.balanceFactor() == -1){
 				rotateLeft(x);
 			} else if(xRight.balanceFactor() == 0){
-				rotateRight(xRight);
 				rotateLeft(x);
 				break;
 			}
