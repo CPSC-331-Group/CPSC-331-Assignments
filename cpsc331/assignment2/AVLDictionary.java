@@ -661,7 +661,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
 				rotateRight(x);
 			} else if(xLeft.balanceFactor() == 0){
 				rotateRight(x);
-				break;
 			}
 		}else if(x.balanceFactor() == -2){
 		//case where the problem node has a balance factor of -2
