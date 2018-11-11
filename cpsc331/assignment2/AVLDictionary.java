@@ -673,7 +673,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
 				rotateLeft(x);
 			} else if(xRight.balanceFactor() == 0){
 				rotateLeft(x);
-				break;
 			}
 		}
 		updateHeight(x); //update the nodes in the subtree where x is the root
