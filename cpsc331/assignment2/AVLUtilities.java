@@ -203,6 +203,8 @@ public class AVLUtilities<K extends Comparable<K>, V> {
       System.out.print("Height of node with key ");
       System.out.print(x.key().toString());
       System.out.println(" is incorrect.");
+	  System.out.println("correctHeight: "+ correctHeight(x) + "  your height " + x.height());
+
     };
     
     int balanceFactor = correctBalance(x);
