@@ -421,30 +421,6 @@ public class AVLDictionary<K extends Comparable<K>, V>
 
   }
 
-  //debugging function to display properties of a given node
-  //to be deleted
-  private void debugPrint(AVLNode x){
-	 if(x != null){
-		System.out.print("node: " + x.key() + " " );
-		if(x.parent() != null){
-		System.out.print("parent: " + x.parent.key() + " " );
-		 }
-		 if(x.left() != null){
-			System.out.print("left: " + x.left.key() + " " );
-		 }
-		 if(x.right() != null){
-			System.out.print("right: " + x.right.key() + " " );
-		 }
-		 System.out.print("height: " + x.height() + " " );
-		 System.out.print("balanceFactor" + x.balanceFactor() + " ");
-	 }else{
-		 System.out.println("node is null");
-	 }
-	 System.out.println("");
-
-  }
-
-
 
   /*reference: the deleteFromSubtree method from the BSTDictionary file
   provided in lecture notes
