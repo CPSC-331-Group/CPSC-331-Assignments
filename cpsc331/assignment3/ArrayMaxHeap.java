@@ -31,8 +31,13 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   //   returned as output.
 
   private int parent (int i) {
+    int c = A.get(i);
+    if (i != 0) {
+      int p = (c - 1)/2;
+      return A.indexOf(p);
+    }
 
-    return 0;    // To be supplied by students
+    return null;    // To be supplied by students
 
   }
 

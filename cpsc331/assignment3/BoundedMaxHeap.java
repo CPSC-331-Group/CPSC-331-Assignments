@@ -38,9 +38,9 @@ public interface BoundedMaxHeap<T extends Comparable<T>> {
   * </ol>
   *
   */
-  
+
   public void insert (T v) throws HeapFullException;
-  
+
   /**
   *
   * @return the value that was deleted from this BoundedMaxHeap
@@ -59,11 +59,11 @@ public interface BoundedMaxHeap<T extends Comparable<T>> {
   *      other changes to this multiset have been made. A NoSuChElementException is
   *      thrown if this heap was already empty, an it is not changed. </li>
   * </ol>
-  *  
+  *
   */
-  
+
   public T deleteMax () throws NoSuchElementException;
-  
+
   /**
   *
   * @return the current size of this MaxHeap
@@ -81,9 +81,9 @@ public interface BoundedMaxHeap<T extends Comparable<T>> {
   * </ol>
   *
   */
-  
+
   public int getSize();
-  
+
   /**
   *
   * @return the capacity of this BoundedMaxHeap
@@ -101,7 +101,7 @@ public interface BoundedMaxHeap<T extends Comparable<T>> {
   * </ol>
   *
   */
-  
+
   public int getCapacity();
 
 }
