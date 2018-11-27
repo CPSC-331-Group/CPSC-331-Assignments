@@ -18,7 +18,7 @@ import cpsc331.collections.HeapFullException;
 public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> {
 
   // Data fields
-  
+
   private final int CAPACITY;
   private int size;
   private ArrayList<T> A;
@@ -29,13 +29,13 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   // Postcondition: If A is viewed as a representation of a binary tree with
   //   size "this.size" then the index of the parent of the node with index i is
   //   returned as output.
-  
+
   private int parent (int i) {
-  
+
     return 0;    // To be supplied by students
-  
+
   }
-  
+
   // Reports whether a node with a given index has a left child in the binary
   // tree represented by A
   //
@@ -43,13 +43,13 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   // Postcondition: If A is viewed as a representation of a binary tree with size
   //   "this.size" then true is returned if the node with index i has a left
   //   child in this binary tree, and false is returned otherwise
-  
+
   private boolean hasLeft (int i) {
-  
+
     return false;    // To be supplied by students
-  
+
   }
-  
+
   // Returns the index of a node that is the left child of a node with a given index
   //
   // Precondition:
@@ -58,13 +58,13 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   //    then the node x with index i has a left child in this binary tree.
   // Postcondition: The index of the left child of x is returned as output.
   //
-  
+
   private int leftChild (int i) {
-  
+
     return 0;    // To be supplied by students
-  
+
   }
-  
+
   // Reports whether a node with a given index has a right child in the binary
   // tree represented by A
   //
@@ -72,13 +72,13 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   // Postcondition: If A is viewed as a representation of a binary tree with size
   //   "this.size" then true is returned if the node with index i has a right
   //   child in this binary tree, and false is returned otherwise
-  
+
   private boolean hasRight (int i) {
-  
+
     return false;    // To be supplied by students
-  
+
   }
-  
+
   // Returns the index of a node that is the right child of a node with a given index
   //
   // Precondition:
@@ -87,14 +87,14 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   //    then the node x with index i has a right child in this binary tree.
   // Postcondition: The index of the right child of x is returned as output.
   //
-  
+
   private int rightChild (int i) {
-  
+
     return 0;      // To be supplied by students
-  
+
   }
-  
-  
+
+
   //
   // Implements the "bubbleUp" method needed to complete an insertion
   //
@@ -116,13 +116,13 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   // b) this.A now represents a BoundedMaxHeap with size "this.size"
   //
   // Note: The value of i can change - by decreasing - as this problem is being solved.
-  
+
   private void bubbleUp (int i) {
-  
+
     // To be supplied by students
-    
+
   }
-  
+
   //
   // Implements the "bubbleDown" method needed to complete a deleteMax
   //
@@ -138,20 +138,20 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   //    is the node with index x in the above binary tree then, for every node y
   //    in this tree except for x, both the children and grandchildren of y store
   //    values that are less than the value stored at y - if these nodes exist.
-  
+
   // Postcondition:
   // a) The values stored in the first "this.size" locations of A have been reordered
   //    but not changed.
   // b) A now represents a BoundedMaxHeap with size "this.size".
   //
   // Note: The value of i can change - by increasing - as this problem is being solved.
-  
+
   private void bubbleDown (int i) {
-  
+
     // To be supplied by students
-  
+
   }
-  
+
   //
   // Converts an array into a representation of a BoundedMaxHeap
   //
@@ -162,14 +162,14 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   // a) The entries of A have been ordered but otherwise not changed.
   // b) A is now a representation of a BoundedMaXHeap whose size is the size (and
   //    capacity) of this ArrayList.
-  
+
   private void heapify(){
-  
+
     // To be supplied by students
-  
+
   }
-  
-  
+
+
   /**
   *
   * @param capacity the capacity of the BondedMaxHeap to be created
@@ -190,16 +190,16 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   * </ol>
   *
   */
-  
+
   public ArrayMaxHeap(int capacity) throws IllegalArgumentException {
-  
+
     if (capacity > 0) {
-    
+
       CAPACITY = capacity;
       size = 0;
       A = new ArrayList<T>(capacity);
       int i = 0;
-      
+
       // Loop Invariant:
       // 1. A positive integer capacity is given as input.
       // 2. A is an ArrayList storing values with type T.
@@ -207,20 +207,20 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
       // 4. The current size of A is i and, for every integer j such that
       //    0 <= j < i, A[j] = null
       // Bound Function: capacity - i
-      
+
       while (i < capacity) {
         A.add(null);
         i = i+1;
       }
-    
+
     } else {
-    
+
       throw new IllegalArgumentException("The input capacity must be positive.");
-    
+
     }
-  
+
   }
-  
+
   /**
   *
   * @param givenA the ArrayList to be used to create this.A
@@ -241,59 +241,59 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   * </ol>
   *
   */
-  
+
   public ArrayMaxHeap(ArrayList<T> givenA) {
-  
+
     CAPACITY = givenA.size();
     size =  CAPACITY;
     A = givenA;
     heapify();
-  
+
   }
-  
-  
+
+
   // Implementation of insert
-  
+
   public void insert(T v) throws HeapFullException {
-  
+
     // To be supplied by students
-  
+
   }
-  
+
   // Implementation of deleteMax
-  
+
   public T deleteMax() throws NoSuchElementException {
-  
+
     return null;   // To be supplied by students
-  
+
   }
-  
+
   // Implementation of getSize; supplied by instructor
-  
+
   public int getSize() {
     return size;
   }
-  
+
   // Implementation of getCapacity; supplied by instructor
-  
+
   public int getCapacity() {
     return CAPACITY;
   }
-  
+
   // Used for testing; supplied by instructor
-  
+
   T valueByIndex (int indx) throws NoSuchElementException {
-  
+
     if ((indx >= 0) && (indx < size)) {
-    
+
       return A.get(indx);
-    
+
     } else {
-    
+
       throw new NoSuchElementException("There is no node with this index.");
-    
+
     }
-  
+
   }
 
 }
