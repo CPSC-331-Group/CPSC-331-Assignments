@@ -68,8 +68,8 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   //
 
   private int leftChild (int i) {
-    if (hasLeft()) {
-      return A.get(2*i + 1);
+    if (hasLeft(i)) {
+      return 2*i + 1;
     }
     return null;    // To be supplied by students
 
@@ -103,8 +103,8 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   //
 
   private int rightChild (int i) {
-    if (hasRight()) {
-      return A.get(2*i + 2);
+    if (hasRight(i)) {
+      return 2*i + 2;
     }
     return null;      // To be supplied by students
 
@@ -169,8 +169,10 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   // Note: The value of i can change - by increasing - as this problem is being solved.
 
   private void bubbleDown (int i) {
-    while () {
 
+    while (hasLeft(i)) {
+      int small = leftChild(i);
+      
     }
     // To be supplied by students
 
