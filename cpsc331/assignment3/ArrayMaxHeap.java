@@ -134,10 +134,12 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   // Note: The value of i can change - by decreasing - as this problem is being solved.
 
   private void bubbleUp (int i) {
-    while (parent(i) >= 0 && A.get(parent(i)).compareTo(A.get(i)) > 0) {
-      int temp = A.get(parent(i));
-      A.set(parent(i), A.get(i));
-      A.set(i, temp);
+    int ind = i;
+    while (parent(ind) >= 0 && A.get(parent(ind)).compareTo(A.get(ind)) < 0) {
+      int temp = A.get(parent(ind));
+      A.set(parent(ind), A.get(ind));
+      A.set(ind, temp);
+      ind = parent(ind);
     }
     // To be supplied by students
 
@@ -167,7 +169,9 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   // Note: The value of i can change - by increasing - as this problem is being solved.
 
   private void bubbleDown (int i) {
+    while () {
 
+    }
     // To be supplied by students
 
   }
