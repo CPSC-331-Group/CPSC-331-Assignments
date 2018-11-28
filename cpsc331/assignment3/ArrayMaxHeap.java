@@ -33,10 +33,9 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   private int parent (int i) {
     //int c = A.get(i);
     if (i >= 1 && i <= this.size - 1) {
-      int p = (i - 1)/2;
-      return A.indexOf(p);
+      return (i - 1)/2;
     }
-    return null;    // To be supplied by students
+    return 0;    // To be supplied by students
 
   }
 
@@ -135,7 +134,11 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   // Note: The value of i can change - by decreasing - as this problem is being solved.
 
   private void bubbleUp (int i) {
-
+    while (parent(i) >= 0 && A.get(parent(i)).compareTo(A.get(i)) > 0) {
+      int temp = A.get(parent(i));
+      A.set(parent(i), A.get(i));
+      A.set(i, temp);
+    }
     // To be supplied by students
 
   }
