@@ -301,8 +301,15 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   // Implementation of deleteMax
 
   public T deleteMax() throws NoSuchElementException {
-
-    return null;   // To be supplied by students
+    if (this.size == 0) {
+      throw new NoSuchElementException("Heap is empty. ");
+    }
+    T result = A.get(0);
+    A.set(0, A.get(this.size - 1));
+    A.set(this.size - 1, null);
+    this.size--;
+    bubbleDown(0);
+    return result;   // To be supplied by students
 
   }
 
