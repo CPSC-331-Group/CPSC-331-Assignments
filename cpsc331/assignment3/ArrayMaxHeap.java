@@ -202,9 +202,11 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   //    capacity) of this ArrayList.
 
   private void heapify(){
-
-    // To be supplied by students
-
+    int i = A.length/2;
+    while (i > 0) {
+      bubbleDown(i-1);
+      i--;
+    } // To be supplied by students
   }
 
 
@@ -293,6 +295,9 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   // Implementation of insert
 
   public void insert(T v) throws HeapFullException {
+    if () {
+
+    }
 
     // To be supplied by students
 
