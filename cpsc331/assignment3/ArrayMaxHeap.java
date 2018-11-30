@@ -295,9 +295,14 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   // Implementation of insert
 
   public void insert(T v) throws HeapFullException {
-    if () {
-
+    if (this. size == CAPACITY) {
+      throw new HeapFullException("Heap is full. ");
     }
+    this.size++;
+    int ind = this.size;
+    A.set(ind, v);
+
+    bubbleUp(ind);
 
     // To be supplied by students
 
