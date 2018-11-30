@@ -71,7 +71,7 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
     if (hasLeft(i)) {
       return 2*i + 1;
     }
-    return null;    // To be supplied by students
+    return 0;    // To be supplied by students
 
   }
 
@@ -106,7 +106,7 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
     if (hasRight(i)) {
       return 2*i + 2;
     }
-    return null;      // To be supplied by students
+    return 0;      // To be supplied by students
 
   }
 
@@ -136,7 +136,7 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   private void bubbleUp (int i) {
     int ind = i;
     while (parent(ind) >= 0 && A.get(parent(ind)).compareTo(A.get(ind)) < 0) {
-      int temp = A.get(ind);
+      T temp = A.get(ind);
       A.set(ind, A.get(parent(ind)));
       A.set(parent(ind), temp);
       ind = parent(ind);
@@ -178,7 +178,7 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
       }
 
       if (A.get(ind).compareTo(A.get(large)) < 0) {
-        int temp = A.get(ind);
+        T temp = A.get(ind);
         A.set(ind, A.get(large));
         A.set(large, temp);
       } else {
@@ -202,7 +202,7 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   //    capacity) of this ArrayList.
 
   private void heapify(){
-    int i = A.length/2;
+    int i = getSize()/2;
     while (i > 0) {
       bubbleDown(i-1);
       i--;
@@ -299,7 +299,7 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
       throw new HeapFullException("Heap is full. ");
     }
     this.size++;
-    int ind = this.size;
+    int ind = this.size - 1;
     A.set(ind, v);
 
     bubbleUp(ind);
