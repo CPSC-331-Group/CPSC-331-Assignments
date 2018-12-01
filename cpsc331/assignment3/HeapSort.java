@@ -21,7 +21,7 @@ public class HeapSort<T extends Comparable<T>> {
   * Precondition:<br>
   * <ol style="list-style-type: lower-alpha">
   * <li> An ArrayList&nbsp;A with positive length, storing non-null values from
-  *      an ordered type&nbsp;T, is given as input. 
+  *      an ordered type&nbsp;T, is given as input.
   * </li>
   * </ol>
   * Postcondition:<br>
@@ -33,11 +33,23 @@ public class HeapSort<T extends Comparable<T>> {
   * </ol>
   *
   */
-  
+
   public void sort(ArrayList<T> A) {
-  
+
     ArrayMaxHeap<T> H = new ArrayMaxHeap<T>(A);
-    
+    int heapSize = 1;
+    int i = 1;
+    while (i < H.getSize()) {
+      H.insert(A.get(i));
+      i++;
+    }
+    i = H.getSize() - 1;
+    while (i > 0) {
+      T largest = H.deleteMax();
+      A.set(i, largest);
+      i--;
+    }
+
     // Remaining code to be supplied by students
 
   }
