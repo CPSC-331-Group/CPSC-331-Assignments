@@ -37,9 +37,13 @@ public class HeapSort<T extends Comparable<T>> {
   public void sort(ArrayList<T> A) {
 
     ArrayMaxHeap<T> H = new ArrayMaxHeap<T>(A);
-
-    // Remaining code to be supplied by students
-
+    int i = A.size() - 1;
+    while (i > 0) {
+    T largest = H.deleteMax();
+    A.set(i, largest);
+    i--;
+	}
+	
   }
 
 }
