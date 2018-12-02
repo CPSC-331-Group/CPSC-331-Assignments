@@ -49,12 +49,8 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
 
   private boolean hasLeft (int i) {
     //int n = A.get(i);
-    if (i >= 0 && i <= this.size - 1) {
-    	try {
-      if (A.get(2*i + 1) != null) {
+    if (i >= 0 && 2 * i + 1 <= this.size - 1) {
         return true;
-      }
-    	}catch(Exception e) {return false;}
     }
     return false;    // To be supplied by students
 
@@ -86,10 +82,8 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   //   child in this binary tree, and false is returned otherwise
 
   private boolean hasRight (int i) {
-    if (i >= 0 && i <= this.size - 1) {
-      if (A.get(2*i + 2) != null) {
+    if (i >= 0 && 2 * i + 2 <= this.size - 1) {
         return true;
-      }
     }
     return false;    // To be supplied by students
 

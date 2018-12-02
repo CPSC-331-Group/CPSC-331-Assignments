@@ -41,11 +41,10 @@ public class HeapSort<T extends Comparable<T>> {
 	      try {
 			H.insert(A.get(j));
 		} catch (HeapFullException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	      j++;
-	    } 
+	    }
     //ArrayMaxHeap<T> H = new ArrayMaxHeap<T>(A);
     int i = A.size() - 1;
     while (i >= 0) {
