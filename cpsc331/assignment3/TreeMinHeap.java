@@ -190,9 +190,51 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
   //   as output.
 
   private TreeNode predecessor () {
-	  //int i = latest.getIndex() -1;
-
-    return root.getRight();
+    //0. latest is root: return null
+	  //0.5. latest.parent is root: return null
+	  //1. latest is right: pred=latest.parent.getLeft()
+	  //2. its a left child
+	  //a. its not edge: latest.parent.parent.left.right
+	  //b. its edge	:while loop
+	  if(latest==root) {
+		  return null;
+	  }
+	  if(latest.getParent()==root) {
+		  return null;
+	  }
+	  if(latest==latest.getParent().getRight()) {
+		  return latest.getParent().getLeft();
+	  }
+	  TreeNode x = latest.getParent();
+	  boolean right=false;
+	  int howmuch=1;
+		 while(x!=root) {
+			 if(x==x.getParent().getRight()) {
+				 right=true;
+				 break;
+			 }
+			 howmuch++;
+			 x=x.getParent();
+		  }
+		 if(right) {
+			// int j=0;
+			// x=latest;
+			//while(j<=howmuch) {
+			//	x=x.getParent();
+			//}
+			x=x.getParent();
+			x=x.getLeft();
+			int j=0;
+			while(j<=howmuch) {
+				x=x.getRight();
+			}
+			return x;
+		 }else {
+			 while(x.getRight()!=null) {
+			 x=x.getRight();
+			 }
+			 return x;
+  }
   }
 
   // Returns the node that should become the parent of the next node to be added.
@@ -302,11 +344,16 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
   // of the algorithm begins and, again, when it ends.
 
   public void insert (T v) {
-	  heapSize++;
+    heapSize++;
 	  TreeNode x = new TreeNode(v,heapSize);
 	  x.setParent(successorParent());
+	  if(latest==latest.getParent().getLeft()) {
+		  x.getParent().setRight(x);
+	  }else {
+		  x.getParent().setLeft(x);
+	  }
+	  latest= x;
 	  bubbleUp(x);
-	  //latest= x;
   }
 
   // Implementation of the deleteMin method provided by a MinHeap. The precondition
@@ -318,8 +365,8 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
     if (heapSize == 0) {
       throw new NoSuchElementException("Heap is empty. ");
     }
-    T result = getRoot();
-    root.setValue(getLatest());
+    T result = getRoot().getValue();
+    root.setValue(getLatest().getValue());
     heapSize--;
     bubbleDown(root);
     latest = predecessor();
