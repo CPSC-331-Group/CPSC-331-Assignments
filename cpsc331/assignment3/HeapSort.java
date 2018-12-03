@@ -1,3 +1,9 @@
+/*CPSC assignment 3
+Umair Hassan 30047693
+Betty Zhang 30040611
+William Chan 30041834
+*/
+
 package cpsc331.assignment3;
 
 import cpsc331.assignment3.ArrayMaxHeap;
@@ -36,7 +42,7 @@ public class HeapSort<T extends Comparable<T>> {
 
   public void sort(ArrayList<T> A) {
 	ArrayMaxHeap<T> H = new ArrayMaxHeap<T>(A);
-	    
+
     //ArrayMaxHeap<T> H = new ArrayMaxHeap<T>(A);
     int i = A.size() - 1;
     while (i >= 0) {

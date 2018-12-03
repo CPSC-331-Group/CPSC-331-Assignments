@@ -1,3 +1,9 @@
+/*CPSC assignment 3
+Umair Hassan 30047693
+Betty Zhang 30040611
+William Chan 30041834
+*/
+
 package cpsc331.assignment3;
 
 import cpsc331.collections.MinHeap;
