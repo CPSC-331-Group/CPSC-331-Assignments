@@ -315,8 +315,15 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
   // of the algorithm begins, and when it ends.
 
   public T deleteMin () throws NoSuchElementException {
-    
-    return null;   // To be supplied by students
+    if (heapSize == 0) {
+      throw new NoSuchElementException("Heap is empty. ");
+    }
+    T result = getRoot();
+    root.setValue(getLatest());
+    heapSize--;
+    bubbleDown(root);
+    latest = predecessor();
+    return result;   // To be supplied by students
 
   }
 
