@@ -35,16 +35,8 @@ public class HeapSort<T extends Comparable<T>> {
   */
 
   public void sort(ArrayList<T> A) {
-	ArrayMaxHeap<T> H = new ArrayMaxHeap<T>(A.size());
-	    int j = 0;
-	    while (j < A.size()) {
-	      try {
-			H.insert(A.get(j));
-		} catch (HeapFullException e) {
-			e.printStackTrace();
-		}
-	      j++;
-	    }
+	ArrayMaxHeap<T> H = new ArrayMaxHeap<T>(A);
+	    
     //ArrayMaxHeap<T> H = new ArrayMaxHeap<T>(A);
     int i = A.size() - 1;
     while (i >= 0) {
