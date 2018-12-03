@@ -295,9 +295,9 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
   //
 
   private void bubbleUp(TreeNode x) {
-    while (x.getParent() >= 0 && x.getParent().compareTo(x.getValue()) > 0) {
-      T temp = x.getValue();
-      x.setValue(x.getParent());
+    while (x.getParent().getValue() != null && x.getParent().getValue().compareTo(x.getValue()) > 0) {
+      TreeNode temp = x;
+      x.setValue(x.getParent().getValue());
       x.setParent(temp);
     }
   }
@@ -321,14 +321,14 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
 
   private void bubbleDown(TreeNode x) {
     while(x.getLeft() != null) {
-      T small = x.getLeft();
+      TreeNode small = x.getLeft();
 
-      if (x.getRight() != null && x.getLeft().compareTo(x.getRight()) > 0) {
+      if (x.getRight() != null && x.getLeft().getValue().compareTo(x.getRight().getValue()) > 0) {
         small = x.getRight();
       }
-      if (x.getValue().compareTo(small) > 0) {
-        T temp = x.getValue();
-        x.setValue(small);
+      if (x.getValue().compareTo(small.getValue()) > 0) {
+        TreeNode temp = x;
+        x.setValue(small.getValue());
         x.setParent(temp);
       } else {
           break;
