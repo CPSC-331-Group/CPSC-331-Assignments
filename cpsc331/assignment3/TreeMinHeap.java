@@ -243,6 +243,7 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
 			int j=0;
 			while(j<=howmuch) {
 				x=x.getRight();
+				j++;
 			}
 			return x;
 		 }else {
@@ -311,20 +312,7 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
   //
 
   private void bubbleUp(TreeNode x) {
-	  T temp;
-	  //int i= x.getValue().compareTo(x.getParent().getValue());
-	  if(x.getParent()!=null) {
-	  while(x!=root) {
-		  if(x.getValue().compareTo(x.getParent().getValue())>0) {
-			  temp=x.getValue();
-			  x.setValue(x.getParent().getValue());
-			  x.getParent().setValue(temp);
-			  x=x.getParent();
-		  }else {
-			  break;
-		  }
-	  }
-	  }
+	  
   }
 
   //
@@ -369,18 +357,24 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
   // of the algorithm begins and, again, when it ends.
 
   public void insert (T v) {
-	  if(root==null) {
+	  if(heapSize==0) {
 		  TreeNode x = new TreeNode(v,heapSize);
 		  root= x;
-		  x.setParent(null);
+		  //root.setParent(null);
 		  latest=root;
 		  heapSize++;
-	  }else {
+	  }else if(heapSize==1){
+		  TreeNode x = new TreeNode(v,heapSize);
+		  heapSize++;
+		  bubbleUp(x);
+		  latest=x;
+		  latest.setParent(root);
+	  }
+	  else {
 	  heapSize++;
 	  if(latest!=null) {
 	  TreeNode x = new TreeNode(v,heapSize);
 	  x.setParent(successorParent());
-	  
 	  if(latest==latest.getParent().getLeft()) {
 		  x.getParent().setRight(x);
 	  }else {
@@ -388,6 +382,7 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
 	  }
 	  
 	  latest= x;
+	  //System.out.println("fuck you");
 	  bubbleUp(x);
 	  }
 	  }
@@ -403,12 +398,12 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
 	        throw new NoSuchElementException("Heap is empty. ");
 	      }
 	      T result = getRoot().getValue();
-	      if (latest != null) {
-	        root.setValue(getLatest().getValue());
-	      }
+	      root.setValue(latest.getValue());
+	      
 	      heapSize--;
-	      bubbleDown(root);
-	      latest = predecessor();
+	       latest = predecessor();
+	       bubbleDown(root);
+	     
 	      return result;   // To be supplied by students
 
 	    }
