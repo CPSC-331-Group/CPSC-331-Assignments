@@ -216,8 +216,12 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
 			return null;
 		}
 		if (latest.getParent() == root) {
-			root.setLeft(null);
-			return root;
+			if(latest==latest.getParent().getLeft()) 
+			{root.setLeft(null);}
+			else {
+				return root.getLeft();	
+			}
+			
 		}
 		if (latest == latest.getParent().getRight()) {
 			// latest.getParent().setRight(null);
