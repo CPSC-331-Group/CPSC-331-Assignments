@@ -461,7 +461,7 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
 
 }
 
-*
+/*
 * Provides a Tree-Based Implementation of an Unbounded MinHeap<br><br>
 *
 * TreeMinHeap Invariant: A finite multiset of non-values of ordered type T is
@@ -796,13 +796,14 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
 	        if (x.getRight() != null && x.getLeft().getValue().compareTo(x.getRight().getValue()) > 0) {
 	          small = x.getRight();
 	        }
-	        if (x.getValue().compareTo(small.getValue()) > 0) {
-	          TreeNode temp = x;
-	          x.setValue(small.getValue());
-	          x.setParent(temp);
+          if (x.getValue().compareTo(small.getValue()) > 0) {
+            TreeNode temp = x;
+            x.setValue(small.getValue());
+            small.setValue(temp.getValue());
 	        } else {
 	            break;
 	        }
+          x = small;
 	      }
 	      // To be supplied by students
 
