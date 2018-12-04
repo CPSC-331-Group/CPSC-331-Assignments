@@ -353,13 +353,15 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
     heapSize++;
 	  TreeNode x = new TreeNode(v,heapSize);
 	  x.setParent(successorParent());
+	  if(latest!= null) {
 	  if(latest==latest.getParent().getLeft()) {
 		  x.getParent().setRight(x);
 	  }else {
 		  x.getParent().setLeft(x);
-	  }
+	  }}
 	  latest= x;
 	  bubbleUp(x);
+  
   }
 
   // Implementation of the deleteMin method provided by a MinHeap. The precondition
