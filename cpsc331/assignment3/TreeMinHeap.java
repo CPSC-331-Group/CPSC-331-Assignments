@@ -212,7 +212,7 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
 	  //2. its a left child
 	  //a. its not edge: latest.parent.parent.left.right
 	  //b. its edge	:while loop
-	  if(latest==root) {
+	  if(latest==root||latest==null) {
 		  return null;
 	  }
 	  if(latest.getParent()==root) {
