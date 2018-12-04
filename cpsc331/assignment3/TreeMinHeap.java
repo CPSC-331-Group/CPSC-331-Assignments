@@ -398,7 +398,9 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
       throw new NoSuchElementException("Heap is empty. ");
     }
     T result = getRoot().getValue();
-    root.setValue(getLatest().getValue());
+    if (latest != null) {
+      root.setValue(getLatest().getValue());
+    }
     heapSize--;
     bubbleDown(root);
     latest = predecessor();
