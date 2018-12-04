@@ -210,7 +210,7 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
 	  //0.5. latest.parent is root: return null
 	  //1. latest is right: pred=latest.parent.getLeft()
 	  //2. its a left child
-	  //a. its not edge: latest.parent.parent.left.right
+	  //a. its not edge: wierd while loop thing 
 	  //b. its edge	:while loop
 	  if(latest==root||latest==null) {
 		  return null;
@@ -326,9 +326,9 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
   private void bubbleUp(TreeNode x) {
     //TreeNode i = x;
 	  while (x.getParent() != null  && x.getParent().getValue().compareTo(x.getValue()) > 0) {
-      TreeNode temp = x;
+      T temp = x.getValue();
       x.setValue(x.getParent().getValue());
-      x.getParent().setValue(temp.getValue());
+      x.getParent().setValue(temp);
       x = x.getParent();
     }
   }
@@ -360,10 +360,11 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
 	        if (x.getValue().compareTo(small.getValue()) > 0) {
 	          TreeNode temp = x;
 	          x.setValue(small.getValue());
-	          x.setParent(temp);
+	          small.setValue(temp.getValue());
 	        } else {
 	            break;
 	        }
+	        x = small;
 	      }
 	      // To be supplied by students
 
@@ -383,26 +384,47 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
 		  heapSize++;
 	  }else if(heapSize==1){
 		  TreeNode x = new TreeNode(v,heapSize);
+		  root.setLeft(x);
+		  root.getLeft().setParent(root);
 		  heapSize++;
-		  bubbleUp(x);
 		  latest=x;
+		  //System.out.println(x.getParent().getValue());
+		  //System.out.println("before up root is"+root.getValue());
+		  bubbleUp(x);
+//		  if(root.getLeft().getValue().compareTo(root.getValue())<0) {
+//			  System.out.println("root is big");
+//			  T temp=root.getValue();
+//			  root.setValue(root.getLeft().getValue());
+//			  root.getLeft().setValue(temp);
+//		  }
+		  //System.out.println("after up root is"+root.getValue());
+		  //latest=x;
+		  //System.out.println("after up latest is"+latest.getValue());
 		  latest.setParent(root);
 	  }
 	  else {
 	  heapSize++;
-	  if(latest!=null) {
 	  TreeNode x = new TreeNode(v,heapSize);
+	  
 	  x.setParent(successorParent());
-	  if(latest==latest.getParent().getLeft()) {
+	  boolean child=latest==latest.getParent().getLeft();
+	  latest=x;
+	  if(child) {
+		  System.out.println("fuck children");
 		  x.getParent().setRight(x);
 	  }else {
 		  x.getParent().setLeft(x);
 	  }
-
-	  latest= x;
+	  //latest=x;
+	  
 	  //System.out.println("fuck you");
+	  System.out.println("before up root is"+root.getValue());
 	  bubbleUp(x);
-	  }
+	  System.out.println("after up root is"+root.getValue());
+	  //latest= x;
+	  System.out.println("after up latest is"+latest.getValue());
+	  
+	  
 	  }
   }
 
@@ -419,6 +441,11 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
 	      if(latest==null) {
 	    	  System.out.println("fuck you");
 	      }
+	      if(root==latest) {
+	    	  root=null;
+	    	  latest=null;
+	    	  heapSize=0;
+	      }else {
 	      root.setValue(latest.getValue());
 
 	      heapSize--;
@@ -431,6 +458,7 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
 	       System.out.println(root.getValue());
 //	       heapSize--;
 //	       latest = predecessor();
+	      }
 	      return result;   // To be supplied by students
 
 	    }
