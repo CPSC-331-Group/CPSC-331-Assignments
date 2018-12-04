@@ -345,23 +345,23 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
   // b) This binary tree is now a representation of a binary MinHeap.
 
   private void bubbleDown(TreeNode x) {
-    while(x.getLeft() != null) {
-      TreeNode small = x.getLeft();
+	    while(x.getLeft() != null) {
+	        TreeNode small = x.getLeft();
 
-      if (x.getRight() != null && x.getLeft().getValue().compareTo(x.getRight().getValue()) > 0) {
-        small = x.getRight();
-      }
-      if (x.getValue().compareTo(small.getValue()) > 0) {
-        TreeNode temp = x;
-        x.setValue(small.getValue());
-        x.setParent(temp);
-      } else {
-          break;
-      }
-    }
-    // To be supplied by students
+	        if (x.getRight() != null && x.getLeft().getValue().compareTo(x.getRight().getValue()) > 0) {
+	          small = x.getRight();
+	        }
+	        if (x.getValue().compareTo(small.getValue()) > 0) {
+	          TreeNode temp = x;
+	          x.setValue(small.getValue());
+	          x.setParent(temp);
+	        } else {
+	            break;
+	        }
+	      }
+	      // To be supplied by students
 
-  }
+	    }
 
   // Implementation of the insert method provided by a MinHeap. The preconditions
   // and postcondition for this problem are the same, except that they now also
@@ -373,20 +373,23 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
 		  TreeNode x = new TreeNode(v,heapSize);
 		  root= x;
 		  x.setParent(null);
-		  latest=null;
+		  latest=root;
 		  heapSize++;
 	  }else {
 	  heapSize++;
+	  if(latest!=null) {
 	  TreeNode x = new TreeNode(v,heapSize);
 	  x.setParent(successorParent());
-	  if(latest!= null) {
+	  
 	  if(latest==latest.getParent().getLeft()) {
 		  x.getParent().setRight(x);
 	  }else {
 		  x.getParent().setLeft(x);
-	  }}
+	  }
+	  
 	  latest= x;
 	  bubbleUp(x);
+	  }
 	  }
   }
 
@@ -396,19 +399,19 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
   // of the algorithm begins, and when it ends.
 
   public T deleteMin () throws NoSuchElementException {
-    if (heapSize == 0) {
-      throw new NoSuchElementException("Heap is empty. ");
-    }
-    T result = getRoot().getValue();
-    if (latest != null) {
-      root.setValue(getLatest().getValue());
-    }
-    heapSize--;
-    bubbleDown(root);
-    latest = predecessor();
-    return result;   // To be supplied by students
+	    if (heapSize == 0) {
+	        throw new NoSuchElementException("Heap is empty. ");
+	      }
+	      T result = getRoot().getValue();
+	      if (latest != null) {
+	        root.setValue(getLatest().getValue());
+	      }
+	      heapSize--;
+	      bubbleDown(root);
+	      latest = predecessor();
+	      return result;   // To be supplied by students
 
-  }
+	    }
 
   public int getSize() {
 
