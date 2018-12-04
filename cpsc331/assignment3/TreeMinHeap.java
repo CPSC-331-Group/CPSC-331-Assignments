@@ -4,6 +4,11 @@ Betty Zhang 30040611
 William Chan 30041834
 */
 
+package cpsc331.assignment3;
+
+import cpsc331.collections.MinHeap;
+import java.util.NoSuchElementException;
+
 /**
 *
 * Provides a Tree-Based Implementation of an Unbounded MinHeap<br><br>
