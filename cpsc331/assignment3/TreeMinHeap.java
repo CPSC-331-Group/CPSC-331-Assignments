@@ -4,10 +4,15 @@ Betty Zhang 30040611
 William Chan 30041834
 */
 
-package cpsc331.assignment3;
-
-import cpsc331.collections.MinHeap;
-import java.util.NoSuchElementException;
+/**
+*
+* Provides a Tree-Based Implementation of an Unbounded MinHeap<br><br>
+*
+* TreeMinHeap Invariant: A finite multiset of non-values of ordered type T is
+* stored in a binary MinHeap, using a tree-based representation.
+* <br><br>
+*
+*/
 
 /**
 *
@@ -301,11 +306,18 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
   //
 
   private void bubbleUp(TreeNode x) {
-    while (x.getParent().getValue() != null && x.getParent().getValue().compareTo(x.getValue()) > 0) {
-      TreeNode temp = x;
-      x.setValue(x.getParent().getValue());
-      x.setParent(temp);
-    }
+	  T temp;
+	  //int i= x.getValue().compareTo(x.getParent().getValue());
+	  while(x!=root) {
+		  if(x.getValue().compareTo(x.getParent().getValue())>0) {
+			  temp=x.getValue();
+			  x.setValue(x.getParent().getValue());
+			  x.getParent().setValue(temp);
+			  x=x.getParent();
+		  }else {
+			  break;
+		  }
+	  }
   }
 
   //
@@ -350,7 +362,14 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
   // of the algorithm begins and, again, when it ends.
 
   public void insert (T v) {
-    heapSize++;
+	  if(root==null) {
+		  TreeNode x = new TreeNode(v,heapSize);
+		  root= x;
+		  x.setParent(null);
+		  latest=null;
+		  heapSize++;
+	  }else {
+	  heapSize++;
 	  TreeNode x = new TreeNode(v,heapSize);
 	  x.setParent(successorParent());
 	  if(latest!= null) {
@@ -361,7 +380,7 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
 	  }}
 	  latest= x;
 	  bubbleUp(x);
-  
+	  }
   }
 
   // Implementation of the deleteMin method provided by a MinHeap. The precondition
