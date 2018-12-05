@@ -43,6 +43,11 @@ public class HeapSort<T extends Comparable<T>> {
   public void sort(ArrayList<T> A) {
 	ArrayMaxHeap<T> H = new ArrayMaxHeap<T>(A);  //Create new array max heap H
     int i = A.size() - 1;       //Set i to last index
+	
+	  // Loop Invariant:
+      // i is an integer such that 0<= i <= A.size - 1
+      // Bound Function: i - 1
+
     while (i >= 0) {            //While i is greater than or equal to 0
     T largest = H.deleteMax();  //Set largest to the object returned by deleteMax function
     A.set(i, largest);          //Set the value at largest to index i

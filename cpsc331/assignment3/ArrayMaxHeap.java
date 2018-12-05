@@ -170,6 +170,8 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
 
   private void bubbleDown (int i) {
     int ind = i;            //Set ind to i
+     
+	// Bound Function: depth of ind
     while (hasLeft(ind)) {        //While the value at ind has a left child
       int large = leftChild(ind); //Set large to the left child of ind
       //If ind also has a right child and the right child is larger than the left child
@@ -202,6 +204,9 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
 
   private void heapify(){
     int i = getSize()/2;      //Set i to size/2 and while i is greater than 0
+	 // Loop Invariant:
+      // i is an integer such that 0 <= i <= size/2
+      // Bound Function: i
     while (i > 0) {
       bubbleDown(i-1);        //Bubble down the value at i-1 to correct position and decrement i
       i--;
