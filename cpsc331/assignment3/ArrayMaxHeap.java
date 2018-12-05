@@ -53,11 +53,10 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   //   child in this binary tree, and false is returned otherwise
 
   private boolean hasLeft (int i) {
-    //int n = A.get(i);
     if (i >= 0 && 2 * i + 1 <= this.size - 1) {
         return true;
     }
-    return false;    // To be supplied by students
+    return false;
 
   }
 
@@ -74,7 +73,7 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
     if (hasLeft(i)) {
       return 2*i + 1;
     }
-    return 0;    // To be supplied by students
+    return 0;
 
   }
 
@@ -90,7 +89,7 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
     if (i >= 0 && 2 * i + 2 <= this.size - 1) {
         return true;
     }
-    return false;    // To be supplied by students
+    return false;
 
   }
 
@@ -107,7 +106,7 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
     if (hasRight(i)) {
       return 2*i + 2;
     }
-    return 0;      // To be supplied by students
+    return 0;
 
   }
 
@@ -135,14 +134,14 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   // Note: The value of i can change - by decreasing - as this problem is being solved.
 
   private void bubbleUp (int i) {
-    int ind = i;
+    int ind = i;          //Set ind to i
+    //If the parent of index exists and the value at parent is less than the value at ind
     while (parent(ind) >= 0 && A.get(parent(ind)).compareTo(A.get(ind)) < 0) {
-      T temp = A.get(ind);
-      A.set(ind, A.get(parent(ind)));
-      A.set(parent(ind), temp);
-      ind = parent(ind);
+      T temp = A.get(ind);            //Set temp to value at ind
+      A.set(ind, A.get(parent(ind))); //Set the value at parent to index ind
+      A.set(parent(ind), temp);       //Set the value in temp to index parent
+      ind = parent(ind);              //Update ind to the parent
     }
-    // To be supplied by students
 
   }
 
@@ -170,24 +169,23 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   // Note: The value of i can change - by increasing - as this problem is being solved.
 
   private void bubbleDown (int i) {
-    int ind = i;
-    while (hasLeft(ind)) {
-      int large = leftChild(ind);
-
+    int ind = i;            //Set ind to i
+    while (hasLeft(ind)) {        //While the value at ind has a left child
+      int large = leftChild(ind); //Set large to the left child of ind
+      //If ind also has a right child and the right child is larger than the left child
       if (hasRight(ind) && A.get(leftChild(ind)).compareTo(A.get(rightChild(ind))) < 0) {
-        large = rightChild(ind);
+        large = rightChild(ind);  //Set large to the right child of ind
       }
-
+      //If the value at ind is less than the value at large
       if (A.get(ind).compareTo(A.get(large)) < 0) {
-        T temp = A.get(ind);
-        A.set(ind, A.get(large));
-        A.set(large, temp);
-      } else {
+        T temp = A.get(ind);      //Set the value at ind to temp to swap
+        A.set(ind, A.get(large)); //Set the value at large to index ind
+        A.set(large, temp);       //Set the value in temp to index large
+      } else {                    //Else break from while loop
           break;
       }
-      ind = large;
+      ind = large;                //Update ind to large
     }
-    // To be supplied by students
 
   }
 
@@ -203,11 +201,11 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   //    capacity) of this ArrayList.
 
   private void heapify(){
-    int i = getSize()/2;
+    int i = getSize()/2;      //Set i to size/2 and while i is greater than 0
     while (i > 0) {
-      bubbleDown(i-1);
+      bubbleDown(i-1);        //Bubble down the value at i-1 to correct position and decrement i
       i--;
-    } // To be supplied by students
+    }
   }
 
 
@@ -296,31 +294,29 @@ public class ArrayMaxHeap<T extends Comparable<T>> implements BoundedMaxHeap<T> 
   // Implementation of insert
 
   public void insert(T v) throws HeapFullException {
-    if (this. size == CAPACITY) {
+    if (this.size == CAPACITY) {  //If arraylist size is equal to capacity, throw HeapFullException
       throw new HeapFullException("Heap is full. ");
     }
-    this.size++;
+    this.size++;                  //Increment size and add v to arraylist
     int ind = this.size - 1;
     A.set(ind, v);
 
-    bubbleUp(ind);
-
-    // To be supplied by students
+    bubbleUp(ind);                //Bubble the added value up to correct position
 
   }
 
   // Implementation of deleteMax
 
   public T deleteMax() throws NoSuchElementException {
-    if (this.size == 0) {
+    if (this.size == 0) {         //If arraylist size is 0, throw NoSuchElementException
       throw new NoSuchElementException("Heap is empty. ");
     }
-    T result = A.get(0);
-    A.set(0, A.get(this.size - 1));
-    A.set(this.size - 1, null);
+    T result = A.get(0);          //Get value at index 0 in arraylist
+    A.set(0, A.get(this.size - 1));   //Set value at index 0 to last value in arraylist
+    A.set(this.size - 1, null);   //Set the last value to null and decrement size
     this.size--;
-    bubbleDown(0);
-    return result;   // To be supplied by students
+    bubbleDown(0);                //Bubble the first value down to correct position
+    return result;                //Return removed value
 
   }
 

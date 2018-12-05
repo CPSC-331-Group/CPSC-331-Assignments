@@ -41,14 +41,12 @@ public class HeapSort<T extends Comparable<T>> {
   */
 
   public void sort(ArrayList<T> A) {
-	ArrayMaxHeap<T> H = new ArrayMaxHeap<T>(A);
-
-    //ArrayMaxHeap<T> H = new ArrayMaxHeap<T>(A);
-    int i = A.size() - 1;
-    while (i >= 0) {
-    T largest = H.deleteMax();
-    A.set(i, largest);
-    i = i - 1;
+	ArrayMaxHeap<T> H = new ArrayMaxHeap<T>(A);  //Create new array max heap H
+    int i = A.size() - 1;       //Set i to last index
+    while (i >= 0) {            //While i is greater than or equal to 0
+    T largest = H.deleteMax();  //Set largest to the object returned by deleteMax function
+    A.set(i, largest);          //Set the value at largest to index i
+    i = i - 1;                  //Decrement i
     }
 
   }

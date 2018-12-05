@@ -212,55 +212,46 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
 		// 2. its a left child
 		// a. its not edge: wierd while loop thing
 		// b. its edge :while loop
-		if (latest == root || latest == null) {
+		if (latest == root || latest == null) {     //If latest is the root or null, return null
 			return null;
 		}
-		if (latest.getParent() == root) {
-			if(latest==latest.getParent().getLeft()) 
-			{root.setLeft(null);}
-			else {
-				return root.getLeft();	
+		if (latest.getParent() == root) {           //If the parent of latest is root
+			if(latest==latest.getParent().getLeft()) { //If latest is a left child, set the left child of root to null
+        root.setLeft(null);
+      }
+			else {                                     //Else return the left child of root
+				return root.getLeft();
 			}
-			
 		}
-		if (latest == latest.getParent().getRight()) {
-			// latest.getParent().setRight(null);
+		if (latest == latest.getParent().getRight()) {  //If latest is a right child, reutnr the left child of the parent of latest
 			return latest.getParent().getLeft();
 		}
-		TreeNode x = latest.getParent();
-		boolean right = false;
-		int howmuch = 1;
-		while (x != root) {
+		TreeNode x = latest.getParent();      //Create node x for parent of latest
+		boolean right = false;                //Create boolean to check right child
+		int count = 1;                      //Create int to track max iterations
+		while (x != root) {                   //While x is not root, if x is a right child
 			if (x == x.getParent().getRight()) {
-				right = true;
+				right = true;                     //Set right to true and break out of loop
 				break;
 			}
-			howmuch++;
+			count++;                           //Increment counter and set x to parent of x
 			x = x.getParent();
 		}
-
-		if (right) {
-			x = x.getParent();
-			x = x.getLeft();
-			int j = 0;
-			while (j < howmuch) {
+		if (right) {                          //If right is true
+			x = x.getParent().getLeft();                   //Set x to left child of parent of x
+			int j = 0;                         //Create int j for controlling iterations
+			while (j < count) {              //While j is less than counter, set x to right child of x
 				x = x.getRight();
-				j++;
+				j++;                            //Increment j by 1
 			}
-		} else {
-			// while(x.getRight()!=null) {
+		} else {                            //Else right is false, set j to 1
 			int j = 1;
-			while (j < howmuch) {
+			while (j < count) {            //While j is less than counter, set x to right child and increment j
 				x = x.getRight();
 				j++;
 			}
 		}
-		// if(latest==latest.getParent().getLeft()) {
-		// latest.getParent().setLeft(null);
-		// }else {
-		// latest.getParent().setRight(null);
-		// }
-		return x;
+		return x;                           //Return x
 	}
 
   // Returns the node that should become the parent of the next node to be added.
@@ -271,35 +262,33 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
   //   added is returned.
 
   private TreeNode successorParent ()  {
-		if (latest == null) {
+		if (latest == null) {       //If the latest is null, then return null
 			return null;
 		}
-		if (latest == root) {
+		if (latest == root) {       //If the latest is the root, then return root
 			return root;
 		}
-		if (latest == latest.getParent().getLeft()) {
+		if (latest == latest.getParent().getLeft()) {   //If the latest is a left child, return the parent of latest
 			return latest.getParent();
-		} else {
+		} else {                                      //Else create x to the parent of latest
 			TreeNode x = latest.getParent();
-			boolean left = false;
-			while (x != root) {
-				if (x == x.getParent().getLeft()) {
+			boolean left = false;                        //Create a boolean for left child to false
+			while (x != root) {                        //While x is not the root
+				if (x == x.getParent().getLeft()) {       //If x is a left child, set left to true and break out of while loop
 					left = true;
 					break;
 				}
-				x = x.getParent();
+				x = x.getParent();                        //Update x to the parent of x
 			}
-			if (left) {
+			if (left) {                                //If left is true, then return the right child of the parent of the parent of latest
 				return latest.getParent().getParent().getRight();
-			} else {
+			} else {                                   //Else while the left child of x exists, set x to the left child
 				while (x.getLeft() != null) {
 					x = x.getLeft();
 				}
-				return x;
+				return x;                                 //Return x
 			}
-
 		}
-
 	}
 
   //
@@ -321,12 +310,12 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
   //
 
   private void bubbleUp(TreeNode x) {
-		// TreeNode i = x;
+    //While x has a parent and the value at parent is greater than the value at x
 		while (x.getParent() != null && x.getParent().getValue().compareTo(x.getValue()) > 0) {
-			T temp = x.getValue();
+			T temp = x.getValue();                   //Create temp to store x value and set value of x to value at parent
 			x.setValue(x.getParent().getValue());
-			x.getParent().setValue(temp);
-			x = x.getParent();
+			x.getParent().setValue(temp);            //Set the value of the parent of x to temp
+			x = x.getParent();                       //Update x to the parent of x
 		}
 	}
 
@@ -348,27 +337,28 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
   // b) This binary tree is now a representation of a binary MinHeap.
 
   private void bubbleDown(TreeNode x) {
-
+    //While x has a left child and the index of the left child is less than or equal to heapsize
 		while (x.getLeft() != null && x.getLeft().getIndex() <= heapSize) {
-			boolean r = false;
-			TreeNode small = x.getLeft();
-
+			boolean r = false;                     //Create boolean check for right child
+			TreeNode small = x.getLeft();          //Set new tree node small to left child of x
+      //If x has a right child and the left child is greater than the right child
 			if (x.getRight() != null && x.getLeft().getValue().compareTo(x.getRight().getValue()) > 0) {
-				small = x.getRight();
+				small = x.getRight();               //Set small to the right child and r to true
 				r = true;
 			}
+      //If the value at x is greater than the value at small
 			if (x.getValue().compareTo(small.getValue()) > 0) {
-				T temp = x.getValue();
-				x.setValue(small.getValue());
-				if (r) {
+				T temp = x.getValue();              //Create temp to store x value
+				x.setValue(small.getValue());       //Set the value of x to the value at small
+				if (r) {                            //If r is true, set the value of the right child of x to temp
 					x.getRight().setValue(temp);
-					x = x.getRight();
-				} else {
+					x = x.getRight();                //Update x to the right child of x
+				} else {                            //Else set the value of the left child of x to temp and update x to left child
 					x.getLeft().setValue(temp);
 					x = x.getLeft();
 				}
-			} else {
-				break;
+			} else {       //If x is smaller than value at small, break out of while loop
+        break;
 			}
 		}
 
@@ -380,56 +370,31 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
   // of the algorithm begins and, again, when it ends.
 
   public void insert (T v) {
-		if (heapSize == 0) {
+		if (heapSize == 0) {              //If heap size is 0, create tree node with value v at heapsize index
 			TreeNode x = new TreeNode(v, heapSize);
-			root = x;
-			// root.setParent(null);
+			root = x;                      //Set root to x and latest to root and increment heapsize by 1
 			latest = root;
 			heapSize++;
-		} else if (heapSize == 1) {
+		} else if (heapSize == 1) {       //If hea size is 1, create tree node with value v at heapsize index
 			TreeNode x = new TreeNode(v, heapSize);
-			latest = x;
+			latest = x;                    //Set latest to x and connect root to latest and latest to root
 			root.setLeft(latest);
-			// root.getLeft().setParent(root);
 			latest.setParent(root);
-			heapSize++;
-			// System.out.println(x.getParent().getValue());
-			// System.out.println("before up root is"+root.getValue());
+			heapSize++;                    //Increment heap size by 1 and bubble up x to correct position
 			bubbleUp(x);
-			// if(root.getLeft().getValue().compareTo(root.getValue())<0) {
-			// System.out.println("root is big");
-			// T temp=root.getValue();
-			// root.setValue(root.getLeft().getValue());
-			// root.getLeft().setValue(temp);
-			// }
-			// System.out.println("after up root is"+root.getValue());
-			// latest=x;
-			// System.out.println("after up latest is"+latest.getValue());
-			latest.setParent(root);
-		} else {
+			latest.setParent(root);        //Set the parent of latest to root
+		} else {                          //Else increment heapsize and create tree node x with value v at heapsize index
 			heapSize++;
 			TreeNode x = new TreeNode(v, heapSize);
-
-			x.setParent(successorParent());
-			boolean child = latest == latest.getParent().getLeft();
-			latest = x;
+			x.setParent(successorParent());            //Set the parent of x to node returned by successorParent function
+			boolean child = latest == latest.getParent().getLeft();    //Create boolean to check if latest is the left child
+			latest = x;                                //Set latest to x and if latest is the left child
 			if (child) {
-				x.getParent().setRight(x);
-				System.out.println("root,Lchid, Rchild " + root.getValue() + " " + root.getLeft().getValue() + " "
-						+ root.getRight().getValue());
+				x.getParent().setRight(x);              //Set the right child of the parent of x to x
 			} else {
-				x.getParent().setLeft(x);
-				System.out.println("root,Lchid, Rchild " + root.getValue() + " " + root.getLeft().getValue() + " "
-						+ root.getRight().getValue());
+				x.getParent().setLeft(x);               //Else set the left child of the parent of x to x
 			}
-			// latest=x;
-
-			// System.out.println("fuck you");
-			System.out.println("before up root is" + root.getValue());
-			bubbleUp(x);
-			System.out.println("after up root is" + root.getValue());
-			// latest= x;
-			// System.out.println("after up latest is"+latest.getValue());
+			bubbleUp(x);                               //Bubble up x to correct position
 
 		}
 	}
@@ -440,34 +405,25 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
   // of the algorithm begins, and when it ends.
 
   public T deleteMin () throws NoSuchElementException {
-		if (heapSize == 0) {
+		if (heapSize == 0) {          //If the heap is empty, throw NoSuchElementException
 			throw new NoSuchElementException("Heap is empty. ");
 		}
-		try {
-			System.out.println("The value of latest: " + latest.getValue());
-		} catch (Exception e) {
-		}
-		T result = getRoot().getValue();
-		if (heapSize == 1) {
+		T result = getRoot().getValue();    //Set result to the value at root
+		if (heapSize == 1) {          //If the heap size is 1, set root and latest to null and heapsize to 0
 			root = null;
 			latest = null;
 			heapSize = 0;
-		} else if (heapSize == 2) {
-
+		} else if (heapSize == 2) {         //If the heap size is 2, set the root value to the latest value
 			root.setValue(latest.getValue());
-			latest = root;
+			latest = root;             //Set latest to root and change heapsize to 1
 			heapSize = 1;
 		} else {
-
-			root.setValue(latest.getValue());
+			root.setValue(latest.getValue());  //Else set root value to value of latest and decrement heapsize by 1
 			heapSize--;
-			System.out.println("latest " + latest.getValue());
-			bubbleDown(root);
-			latest = predecessor();
-			System.out.println("latest after bubble " + latest.getValue());
+			bubbleDown(root);          //Bubble down the root to correct position
+			latest = predecessor();    //Set latest to node returned by predecessor function
 		}
-
-		return result; // To be supplied by students
+		return result;              //Return deleted value
 
 	}
 
