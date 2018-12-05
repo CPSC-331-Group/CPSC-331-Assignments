@@ -273,18 +273,22 @@ public class TreeMinHeap<T extends Comparable<T>> implements MinHeap<T> {
 		} else {                                      //Else create x to the parent of latest
 			TreeNode x = latest.getParent();
 			boolean left = false;                        //Create a boolean for left child to false
+			int howmuch=0;								//howmuch is how far x was from root
 			while (x != root) {                        //While x is not the root
 				if (x == x.getParent().getLeft()) {       //If x is a left child, set left to true and break out of while loop
 					left = true;
 					break;
 				}
 				x = x.getParent();                        //Update x to the parent of x
+				howmuch++;
 			}
 			if (left) {                                //If left is true, then return the right child of the parent of the parent of latest
 				return latest.getParent().getParent().getRight();
-			} else {                                   //Else while the left child of x exists, set x to the left child
-				while (x.getLeft() != null) {
+			} else {
+				int j =0;
+				while (j<=howmuch) {			//goes down to left child depending on how far x was from root
 					x = x.getLeft();
+					j++;
 				}
 				return x;                                 //Return x
 			}
